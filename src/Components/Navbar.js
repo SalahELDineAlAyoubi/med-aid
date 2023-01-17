@@ -10,8 +10,15 @@ const Navbar = () => {
   };
  
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <NavLink to={"/"} style={{paddingLeft:"50px"}} className="navbar-brand fw-bold fs-4">
+    <nav
+      className="navbar navbar-expand-lg navbar-light "
+      style={{ backgroundColor: " #e3f2fd", marginBottom: "15px" }}
+    >
+      <NavLink
+        to={"/"}
+        style={{ paddingLeft: "50px" }}
+        className="navbar-brand fw-bold fs-4"
+      >
         <img className="logo" src={logo} />
         MEDAID
       </NavLink>

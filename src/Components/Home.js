@@ -1,11 +1,12 @@
 import React from 'react'
 
 const Home = () => {
+    
   return (
     <div>
-      HOME
+   Homme
     </div>
-  )
+  );
 }
 
 export default Home
