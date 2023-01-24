@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light "
-      style={{ backgroundColor: " #e3f2fd", marginBottom: "15px" }}
+      style={{ backgroundColor: " #e3f2fd", marginBottom: "0px" }}
     >
       <NavLink
         to={"/"}
