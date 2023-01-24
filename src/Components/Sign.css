@@ -1,7 +1,7 @@
 .bodySign{
   margin: 0; padding: 0;
   width: 100vw; min-height: 100vh;
-  background-image: url("C:\Program Files\nodejs\med-aid\src\Images\p1.jpg") ;
+  background-image: url("../Images/p1.jpg") ;
   background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
