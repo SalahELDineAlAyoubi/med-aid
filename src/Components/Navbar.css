@@ -14,7 +14,8 @@ nav {
 
 nav a {
     margin-right: 15px;
-}
+ 
+} 
   
   a:hover {
 transform: translateY(-5px);   

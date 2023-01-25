@@ -1,0 +1,15 @@
+a:link {
+    text-decoration: none;
+ 
+}
+
+  .logo {
+      width: 40px;
+      height: 30px;
+      margin-right: 11px;
+  }
+
+   a:hover {
+       transform: translateY(-5px);
+       transition: 1s;
+   }

@@ -9,19 +9,21 @@ import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
+import Navbar2 from './Components/Navbar2';
   
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
+      <Navbar2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signUp" element={<SignUp/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/displayMed" element={<CardDisplay />} />
       </Routes>
     </div>
