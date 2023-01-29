@@ -10,6 +10,8 @@ import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Navbar2 from './Components/Navbar2';
+import Search from './Components/Search';
+ 
   
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/displayMed" element={<CardDisplay />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </div>
   );

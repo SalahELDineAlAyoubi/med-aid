@@ -11,27 +11,33 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { styled, alpha } from "@mui/material/styles";
+ import { styled, alpha } from "@mui/material/styles";
 import logo from "../Images/logo-nav.png";
 import "./Navbar2.css";
 
-import Badge from "@mui/material/Badge";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import InputBase from "@mui/material/InputBase";
-import { Search } from "@mui/icons-material";
-import { NavLink } from "react-router-dom";
+ import SearchIcon from "@mui/icons-material/Search";
+  import InputBase from "@mui/material/InputBase";
+ import { NavLink, useNavigate } from "react-router-dom";
 
 const pages = ["Home", "Medecines", "About", "Contact"];
 const settings = ["Profile", "Log in"];
 
-function ResponsiveAppBar() {
+
+function Navbar2() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [serachItem, setSerachItem] = React.useState("");
+  let navigate = useNavigate(); 
+
+  const handleChangeSearch = (e) => {
+    e.preventDefault();
+    setSerachItem(e.target.value);
+   /* navigate("/search", {
+      state: {
+        serachItem: serachItem, //to send the word in input search to Display Item
+      },
+    });*/
+   };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,49 +53,49 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  }));
+  // const Search = styled("div")(({ theme }) => ({
+  //   position: "relative",
+  //   borderRadius: theme.shape.borderRadius,
+  //   backgroundColor: alpha(theme.palette.common.white, 0.15),
+  //   "&:hover": {
+  //     backgroundColor: alpha(theme.palette.common.white, 0.25),
+  //   },
+  //   marginLeft: 0,
+  //   width: "100%",
+  //   [theme.breakpoints.up("sm")]: {
+  //     marginLeft: theme.spacing(1),
+  //     width: "auto",
+  //   },
+  // }));
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "black",
-  }));
+  // const SearchIconWrapper = styled("div")(({ theme }) => ({
+  //   padding: theme.spacing(0, 2),
+  //   height: "100%",
+  //   position: "absolute",
+  //   pointerEvents: "none",
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   color: "black",
+  // }));
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "Black",
+  // const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  //   color: "Black",
 
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
+  //   "& .MuiInputBase-input": {
+  //     padding: theme.spacing(1, 1, 1, 0),
+  //     // vertical padding + font size from searchIcon
+  //     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+  //     transition: theme.transitions.create("width"),
+  //     width: "100%",
+  //     [theme.breakpoints.up("sm")]: {
+  //       width: "12ch",
+  //       "&:focus": {
+  //         width: "20ch",
+  //       },
+  //     },
+  //   },
+  // }));
 
   return (
     <AppBar
@@ -151,15 +157,28 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Medecines</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">About</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Contact</Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
-          <Box  sx={{ flexGrow: 1 ,position:'static', display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              position: "static",
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             <NavLink to={"/"}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -193,16 +212,25 @@ function ResponsiveAppBar() {
               </Button>
             </NavLink>
           </Box>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
+          {/* <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper> */}
+          {/* <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={handleChangeSearch}
+              value={"value"}
+            /> */}
+          <form className="d-flex">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search"
+              onChange={handleChangeSearch}
             />
-          </Search>
-          <div>--</div>
+          </form>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -242,4 +270,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar2;

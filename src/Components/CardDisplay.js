@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
    import medecines from "../tmpComponents/medecine.json"
 import { FaRegBookmark, FaInfoCircle } from "react-icons/fa";
   import "./CardDisplay.css";
-
-const CardDisplay = () => {
+//import axios from 'axios';
+ 
+import { fetchMedecines } from '../Redux/Medecines/medecineActions';
+import { connect } from 'react-redux';
+  
+const CardDisplay = ({ medData, fetchMedecines }) => {
+   useEffect(() => {
+   fetchMedecines();
+  }, []);
   return (
     <div className="App0">
-   {/*    <button type="button" class="btn btn-secondary btn-rounded">
-        Add Your Medecine
-      </button>
-      <button type="button" class="btn btn-secondary btn-rounded">
-        Request a Medecine
-      </button> */}
-     
       <div className="App1">
         {medecines.map((item) => (
           <div key={item.id} className="medList">
@@ -48,6 +48,17 @@ const CardDisplay = () => {
       </div>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => {
+  return {
+    medData: state.medecine,
+  };
+};
 
-export default CardDisplay
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchMedecines: () => dispatch(fetchMedecines()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CardDisplay);
+//export default  CardDisplay 
