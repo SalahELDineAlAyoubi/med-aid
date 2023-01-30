@@ -6,8 +6,7 @@ import Account from './Components/Account';
 import CardDisplay from './Components/CardDisplay';
 import Contact from './Components/Contact';
 import Home from './Components/Home';
-import Navbar from './Components/Navbar';
-import Login from './Components/Login';
+ import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Navbar2 from './Components/Navbar2';
 import Search from './Components/Search';
@@ -29,6 +28,7 @@ function App() {
         <Route path="/displayMed" element={<CardDisplay />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+        
     </div>
   );
 }

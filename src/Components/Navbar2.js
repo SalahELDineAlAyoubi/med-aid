@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
  import { styled, alpha } from "@mui/material/styles";
 import logo from "../Images/logo-nav.png";
 import "./Navbar2.css";
+import { useLocalStorage } from "react-use-storage";
 
  import SearchIcon from "@mui/icons-material/Search";
   import InputBase from "@mui/material/InputBase";
@@ -24,6 +25,13 @@ const settings = ["Profile", "Log in"];
 
 
 function Navbar2() {
+    const [islogin, setislogin, removeislogin] = useLocalStorage(
+      "islogin",
+      false
+    );
+
+  const [name, setName, removeName] = useLocalStorage("name", "");
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [serachItem, setSerachItem] = React.useState("");
@@ -53,49 +61,13 @@ function Navbar2() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  // const Search = styled("div")(({ theme }) => ({
-  //   position: "relative",
-  //   borderRadius: theme.shape.borderRadius,
-  //   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  //   "&:hover": {
-  //     backgroundColor: alpha(theme.palette.common.white, 0.25),
-  //   },
-  //   marginLeft: 0,
-  //   width: "100%",
-  //   [theme.breakpoints.up("sm")]: {
-  //     marginLeft: theme.spacing(1),
-  //     width: "auto",
-  //   },
-  // }));
+  const handleCloseLogout = () => {
+    setAnchorElUser(null);
+    setislogin(false)
+  };
 
-  // const SearchIconWrapper = styled("div")(({ theme }) => ({
-  //   padding: theme.spacing(0, 2),
-  //   height: "100%",
-  //   position: "absolute",
-  //   pointerEvents: "none",
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   color: "black",
-  // }));
 
-  // const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  //   color: "Black",
-
-  //   "& .MuiInputBase-input": {
-  //     padding: theme.spacing(1, 1, 1, 0),
-  //     // vertical padding + font size from searchIcon
-  //     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  //     transition: theme.transitions.create("width"),
-  //     width: "100%",
-  //     [theme.breakpoints.up("sm")]: {
-  //       width: "12ch",
-  //       "&:focus": {
-  //         width: "20ch",
-  //       },
-  //     },
-  //   },
-  // }));
+ 
 
   return (
     <AppBar
@@ -212,15 +184,7 @@ function Navbar2() {
               </Button>
             </NavLink>
           </Box>
-          {/* <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper> */}
-          {/* <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={handleChangeSearch}
-              value={"value"}
-            /> */}
+          
           <form className="d-flex">
             <input
               className="form-control me-2"
@@ -253,16 +217,32 @@ function Navbar2() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <NavLink to={"/account"}>
+{ islogin ? <div> <NavLink to={"/account"}>
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
+                  <Typography textAlign="center">{name}</Typography>
+                </MenuItem>
+              </NavLink>    <NavLink to={"/login"}>
+                <MenuItem onClick={handleCloseLogout}>
+                  <Typography textAlign="center">Log out</Typography>
+                </MenuItem>
+              </NavLink> </div>  :
+              <div>
+              <NavLink to={"/signup"}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Sign up</Typography>
+                </MenuItem>
+              </NavLink>    <NavLink to={"/login"}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Login </Typography>
                 </MenuItem>
               </NavLink>
-              <NavLink to={"/login"}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Login</Typography>
-                </MenuItem>
-              </NavLink>
+              </div>
+              
+              
+              }
+
+             
+          
             </Menu>
           </Box>
         </Toolbar>

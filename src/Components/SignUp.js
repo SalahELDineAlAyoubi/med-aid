@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Sign.css';
-//import axios from 'axios';
+ import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export function SignUp(props){
     const [password, setPassword] = useState("");
@@ -8,9 +9,13 @@ export function SignUp(props){
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [error, setError] = useState('');
-
-    const phoneRegex =  /^\(?([0-9]{3})\)?[- .]?([0-9]{3})[- .]?([0-9]{4})$/;
+    // const phoneRegex =  /^\(?([0-9]{3})\)?[- .]?([0-9]{3})[- .]?([0-9]{4})$/;
+   const phoneRegex = /^([0-9]{2})[- .]?([0-9]{6})$/;
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  let navigate = useNavigate();
+  
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,16 +26,25 @@ export function SignUp(props){
           } else if (password.length < 8) {
             setError('Password must be at least 8 characters');
           }else if (!phoneRegex.test(phone)) {
-            setError('Password must be at least 8 characters');
+            setError("Invalid Phone number ");
           } else {
             // Clear the error message
-            setError('');
-        // try {
-        //   await axios.post('', { name, email, password , phone);
-        //   props.history.push('/login');
-        // } catch (err) {
-        //   setError(err.response.data.error);
-        // }
+             
+  axios
+   .post("/members", {
+     name,
+     email,
+     password,
+     phone,
+   })
+   .then(function (response) {
+     console.log(response);
+      console.log(response.data.exist);
+                  setError(response.data.msg);
+
+     if (!response.data.exist) navigate("/login");
+   });
+       
           }
         
     };
