@@ -19,6 +19,7 @@ import { useLocalStorage } from "react-use-storage";
  import SearchIcon from "@mui/icons-material/Search";
   import InputBase from "@mui/material/InputBase";
  import { NavLink, useNavigate } from "react-router-dom";
+import Search from "./Search";
 
 const pages = ["Home", "Medecines", "About", "Contact"];
 const settings = ["Profile", "Log in"];
@@ -34,18 +35,10 @@ function Navbar2() {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [serachItem, setSerachItem] = React.useState("");
+ 
   let navigate = useNavigate(); 
 
-  const handleChangeSearch = (e) => {
-    e.preventDefault();
-    setSerachItem(e.target.value);
-   /* navigate("/search", {
-      state: {
-        serachItem: serachItem, //to send the word in input search to Display Item
-      },
-    });*/
-   };
+ 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -67,7 +60,7 @@ function Navbar2() {
   };
 
 
- 
+  
 
   return (
     <AppBar
@@ -185,15 +178,7 @@ function Navbar2() {
             </NavLink>
           </Box>
           
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search..."
-              aria-label="Search"
-              onChange={handleChangeSearch}
-            />
-          </form>
+         <Search/>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

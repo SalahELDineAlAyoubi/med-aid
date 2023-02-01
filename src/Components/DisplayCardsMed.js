@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react'
-   import medecines from "../tmpComponents/medecine.json"
-import { FaRegBookmark, FaInfoCircle } from "react-icons/fa";
-  import "./CardDisplay.css";
-//import axios from 'axios';
+  import { FaRegBookmark, FaInfoCircle } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import "./DisplayCardsMed.css";
  
-import { fetchMedecines } from '../Redux/Medecines/medecineActions';
-import { connect } from 'react-redux';
-  
-const CardDisplay = ({ medData, fetchMedecines }) => {
-   useEffect(() => {
-   fetchMedecines();
-  }, []);
+
+const DisplayCardsMed = ({ medData }) => {
+
   return (
     <div className="App0">
       <div className="App1">
-        {medecines.map((item) => (
+        {medData.map((item) => (
           <div key={item.id} className="medList">
             <div className="medCard">
               <div className="img">
@@ -49,16 +43,6 @@ const CardDisplay = ({ medData, fetchMedecines }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    medData: state.medecine,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMedecines: () => dispatch(fetchMedecines()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(CardDisplay);
-//export default  CardDisplay 
+ 
+ 
+ export default DisplayCardsMed;
