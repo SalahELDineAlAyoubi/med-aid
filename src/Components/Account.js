@@ -3,6 +3,7 @@ import DrugsProfile from "./DrugsProfile";
 import medecines from "../tmpComponents/medecine.json";
 import { fetchMedecines } from '../Redux/Medecines/medecineActions';
 import { useLocalStorage } from "react-use-storage";
+//import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./Account.css";
 import axios from 'axios';
@@ -11,6 +12,7 @@ const Account = () => {
 
   const [name, setName] = useLocalStorage("name");
   const [phone, setPhone]=  useState(null);
+  //let history = useHistory();
 
   useEffect(() => {
     fetchMedecines();
@@ -19,16 +21,14 @@ const Account = () => {
       .catch(error => console.error(error));
    }, []);
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(`./members`);
-  //     setPhone(res.phone);
-  //   };
-  //   fetchUser();
-  // }, [phone]);
+ 
+
+  // const handleClick = () => {
+  //   history.push('../details.js');
+  // };
 
   return (
-    <>
+    <div className="bodyAccount">
       <div className="profile">
         <div className="profileRight">
           <div className="profileRightTop">
@@ -52,7 +52,9 @@ const Account = () => {
             {medecines.slice(0, 3).map((item) => (
               // <DrugsProfile key={item.id}/>
               <div className="ProfileDRugs">
-                <div className="profileCover">
+                <div className="profileCover" 
+                  // onClick={handleClick}
+                >
                   <div className="ProfileDRugsCover">
                     <div className="profileInfo">
                       <h4 className="profileDrugsInfo">
@@ -74,7 +76,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
