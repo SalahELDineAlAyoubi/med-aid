@@ -10,14 +10,17 @@ import axios from 'axios';
 const Account = () => {
 
   const [name, setName] = useLocalStorage("name");
-  const [phone, setPhone]=  useState(null);
+  //const [_uviid, set_uviid] = useLocalStorage("_uviid");
+  const [number, setNumber] = useLocalStorage("number");
 
-  useEffect(() => {
-    fetchMedecines();
-    axios.get(`/members`)
-      .then(res => setPhone(res.phone))
-      .catch(error => console.error(error));
-   }, []);
+   //const [phone, setPhone] = useState("");
+
+ /* useEffect(() => {
+     axios
+       .get(`/members`, { _uviid })
+       .then((res) => console.log(res.data))
+       .catch((error) => console.error(error)); 
+   }, []);*/
 
   // useEffect(() => {
   //   const fetchUser = async () => {
@@ -44,14 +47,14 @@ const Account = () => {
                 {name}
               </h4>
               <span className="profileInfoDesc">
-                {phone}
+                {number}
               </span>
             </div>
           </div>
           <div className="profileRightBottom">
             {medecines.slice(0, 3).map((item) => (
               // <DrugsProfile key={item.id}/>
-              <div className="ProfileDRugs">
+              <div className="ProfileDRugs" key={item.id}>
                 <div className="profileCover">
                   <div className="ProfileDRugsCover">
                     <div className="profileInfo">

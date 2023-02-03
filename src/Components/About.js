@@ -63,7 +63,7 @@ const AboutUs = () => {
         </AboutUsText>
         <AboutUsImage src={inspire} alt="About Us" />
       </AboutUsContainer><hr></hr>
-      <div class="container">
+      <div className="container">
         <Alert style={{ backgroundColor: "whitesmoke", width:"100%", margin:"auto" }}>
           <Alert.Heading> Quick facts about MedAid</Alert.Heading><hr></hr><br></br>
           <p style={{textAlign:"left", padding:"10px"}}>
@@ -75,7 +75,7 @@ const AboutUs = () => {
           5. <b>Access:</b> It can also provide access to medication that might not be available or affordable for individuals, such as expensive or rare medication. </p>
         </Alert><br></br>
       </div><br></br>
-      <div class="container">
+      <div className="container">
         <h3> Meet Our Members </h3><br></br>
       <CardGroup>
       <Card><br></br>

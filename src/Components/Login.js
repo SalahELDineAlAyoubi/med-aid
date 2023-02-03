@@ -10,6 +10,9 @@ export function Login(props) {
     false
   );
   const [name, setName, removeName] = useLocalStorage("name", '');
+  const [number, setNumber, removeNumber] = useLocalStorage("number", "");
+  //const [_uviid, set_uviid, remove_uviid] = useLocalStorage("_uviid", "");
+ 
   /*const [memberId, setMemberId, removeMemberId] = useLocalStorage( "MemberId",
   "");*/
   let navigate = useNavigate();
@@ -29,8 +32,12 @@ export function Login(props) {
         if (response.data.ok) 
         {setislogin(true);
        //setMemberId(response.data._id);
-       setName(response.data.name)
-         console.log(response);
+       console.log(response.data);  
+           
+       setName(response.data.name);
+      // set_uviid(response.data._id);
+   setNumber(response.data.phone);
+         
          navigate("/account");}
       });
 

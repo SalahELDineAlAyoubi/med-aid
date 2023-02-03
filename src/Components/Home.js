@@ -86,7 +86,7 @@ const Home = () => {
 
       {/* Accordion Section */}
       <div><br></br>
-        <div class="container" >
+        <div className="container" >
           <Card.Img  src={Logo} style={{ width: "50%" }} />
           <Accordion defaultActiveKey={['0']} alwaysOpen>
             <Accordion.Item eventKey="0">
@@ -131,10 +131,10 @@ const Home = () => {
 
       {/* Cards info Section */}
       <div>
-        <div class="container" style={{ width: "100%" }}><br></br>
+        <div className="container" style={{ width: "100%" }}><br></br>
           <Card border="light">
             <Card.Body>
-              <Card.Title><i class=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
+              <Card.Title><i className=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
               <Card.Text>
                 Technology is advancing rapidly, with new developments in areas such as artificial intelligence, biotechnology,
                 and robotics leading to new and improved products and services
@@ -143,7 +143,7 @@ const Home = () => {
           </Card><br></br>
           <Card border="light" >
             <Card.Body>
-              <Card.Title><i class=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
+              <Card.Title><i className=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
               <Card.Text>
                 The integration of technology with medicine has also led to improved patient outcomes and increased access to healthcare.
                 There are various startups and companies in healthcare industry that are using technology to make healthcare more accessible, affordable, and effective
@@ -152,7 +152,7 @@ const Home = () => {
           </Card><br></br>
           <Card border="light">
             <Card.Body>
-              <Card.Title><i class=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
+              <Card.Title><i className=" material-icons" style={{ fontSize: "40px", color: "darkblue" }}>info_outline</i></Card.Title>
               <Card.Text>
                 MedAid was built with the collaboration of technology and medical care to ensure the communication between people about non
                 usable medicines. All you need to do is to view the medicines you need and get them with zero payments
@@ -161,7 +161,7 @@ const Home = () => {
           </Card><br></br>
         </div>
       </div><br></br>
-      <div class="container">
+      <div className="container">
         <CardGroup>
           <Card >
             <Card.Img variant="top" src={Health} />
@@ -174,7 +174,7 @@ const Home = () => {
           </Card>
         </CardGroup>
       </div><br></br><br></br>
-      <div class="container">
+      <div className="container">
         <Alert style={{ backgroundColor: "white", width:"100%", margin:"auto" }}>
           <Alert.Heading>Having issues in finding your Medicine ?</Alert.Heading>
           <p>
@@ -184,7 +184,7 @@ const Home = () => {
             3. Add a medicine you don't need it anymore <br></br>
           </p>
           <hr />
-          <p className="mb-0">
+          <p classNameName="mb-0">
             <Alert.Link href="Account.js"> Sign Up Now </Alert.Link>
           </p>
         </Alert>
