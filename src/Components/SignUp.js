@@ -10,7 +10,7 @@ export function SignUp(props){
     const [phone, setPhone] = useState("");
     const [error, setError] = useState('');
     // const phoneRegex =  /^\(?([0-9]{3})\)?[- .]?([0-9]{3})[- .]?([0-9]{4})$/;
-   const phoneRegex = /^([0-9]{2})[- .]?([0-9]{6})$/;
+    const phoneRegex = /^([0-9]{2})[- .]?([0-9]{6})$/;
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   let navigate = useNavigate();
