@@ -113,9 +113,8 @@ const Search = ({ medData, fetchMedecines }) => {
           aria-label="Search"
           value={searchTerm}
           onChange={handleChangeSearch}
-        />{" "}
+        />
       </form>
-      {console.log(searchResults)}{" "}
     </div>
   );
 };

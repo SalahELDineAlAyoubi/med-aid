@@ -12,7 +12,7 @@ const DisplayAllCardsMed = ({ medData, fetchMedecines }) => {
 
   return (
     <div>
-      <DisplayCardsMed medData={medData.medecines} />
+      <DisplayCardsMed medData={medecines} />
     </div>
   );
 };
