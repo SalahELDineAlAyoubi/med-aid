@@ -3,6 +3,7 @@ import DrugsProfile from "./DrugsProfile";
 import medecines from "../tmpComponents/medecine.json";
 import { fetchMedecines } from '../Redux/Medecines/medecineActions';
 import { useLocalStorage } from "react-use-storage";
+//import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./Account.css";
 import axios from 'axios';
@@ -10,11 +11,8 @@ import axios from 'axios';
 const Account = () => {
 
   const [name, setName] = useLocalStorage("name");
-  //const [_uviid, set_uviid] = useLocalStorage("_uviid");
   const [number, setNumber] = useLocalStorage("number");
-
-   //const [phone, setPhone] = useState("");
-
+ 
  /* useEffect(() => {
      axios
        .get(`/members`, { _uviid })
@@ -22,16 +20,13 @@ const Account = () => {
        .catch((error) => console.error(error)); 
    }, []);*/
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(`./members`);
-  //     setPhone(res.phone);
-  //   };
-  //   fetchUser();
-  // }, [phone]);
+ 
+
+  // const handleClick = () => {
+   // };
 
   return (
-    <>
+    <div className="bodyAccount">
       <div className="profile">
         <div className="profileRight">
           <div className="profileRightTop">
@@ -54,7 +49,7 @@ const Account = () => {
           <div className="profileRightBottom">
             {medecines.slice(0, 3).map((item) => (
               // <DrugsProfile key={item.id}/>
-              <div className="ProfileDRugs" key={item.id}>
+              <div className="ProfileDRugs">
                 <div className="profileCover">
                   <div className="ProfileDRugsCover">
                     <div className="profileInfo">
@@ -77,7 +72,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
