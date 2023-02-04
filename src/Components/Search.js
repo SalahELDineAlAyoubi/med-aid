@@ -54,6 +54,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { fetchMedecines } from "../Redux/Medecines/medecineActions";
 import DisplayCardsMed from "./DisplayCardsMed";
 import medecines from "../tmpComponents/medecine.json";
+import { useLocalStorage } from "react-use-storage";
+import { Button } from "@mui/material";
 
 const Search = ({ medData, fetchMedecines }) => {
   // const location = useLocation();
@@ -61,51 +63,59 @@ const Search = ({ medData, fetchMedecines }) => {
   // const serachItem = state.serachItem;
   let navigate = useNavigate();
 
-  const [medItems, setMedItems] = useState([]);
-  const [searchResults, setSearchResults] = useState([]); 
+  const [medItems, setMedItems] = useState( []);
+  const [searchResults, setSearchResults] = useLocalStorage("medecines");
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchMedecines();
     setMedItems(medecines);
-    setSearchResults(medecines);
+    // setSearchResults(medecines);
+    //setSearchTerm(searchTerm);
+ 
   }, []);
 
   const handleSubmit = (e) => e.preventDefault();
+  const click = () =>  {
+    if (!searchTerm) setSearchResults(medecines);
+    else {
+      const resultsArray = medecines.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.location.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      setSearchResults(resultsArray);
+    }
+
+     navigate("/searchedItems", {
+      state: {
+        medData: searchResults,
+      },
+    }); 
+  }
 
   const handleChangeSearch = (e) => {
-  if (!e.target.value ) setSearchResults(medItems);
-  else {
-    const resultsArray = medItems.filter(
-      (item) =>
-        item.name.toUpperCase().includes(e.target.value.toUpperCase()) ||
-        item.location.toUpperCase().includes(e.target.value.toUpperCase())
-    );
-
-    setSearchResults(resultsArray);
-  }  
-  
-  navigate("/searchedItems", {
-    state: {
-      medData: searchResults,  
-    },
-  }); 
-  
-
-  };
-  
-  
+     setSearchTerm(e.target.value);
  
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="d-flex">
+        <Button onClick={click} variant="outlined" style={{marginRight:"5px"}}>
+          Search
+        </Button>
         <input
           className="form-control me-2"
           type="search"
           placeholder="Search..."
           aria-label="Search"
+          value={searchTerm}
           onChange={handleChangeSearch}
-        />
-      </form> 
+        />{" "}
+      </form>
+      {console.log(searchResults)}{" "}
     </div>
   );
 };
