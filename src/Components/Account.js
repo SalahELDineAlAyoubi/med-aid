@@ -45,7 +45,6 @@ const Account = () => {
                   </li>
                 </ul>
               </nav>
-
               {activeTab === "available" && <DrugsProfile />}
               {activeTab === "taken" && <UnavailableDrugs />}
             </div>
