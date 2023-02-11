@@ -4,11 +4,14 @@ import DrugsProfile from "./DrugsProfile";
 import UnavailableDrugs from "./UnavailableDrugs";
 import "./Account.css";
 import { Link } from "@mui/material";
+ import { UilPen } from "@iconscout/react-unicons";
+import ProfileModal from "./Profile Model/ProfileModel";
 
 const Account = () => {
   const [name, setName] = useLocalStorage("name");
   const [number, setNumber] = useLocalStorage("number");
   const [activeTab, setActiveTab] = useState("available");
+  const [modalOpened, setModalOpened] = useState(false);
 
   return (
     <div className="bodyAccount">
@@ -16,6 +19,13 @@ const Account = () => {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
+              <div className="pen">
+                <UilPen onClick={() => setModalOpened(true)} />
+                <ProfileModal
+                  modalOpened={modalOpened}
+                  setModalOpened={setModalOpened}
+                />
+              </div>
               <img className="profileCoverImg" />
               <img
                 className="profileUserImg"
@@ -34,12 +44,22 @@ const Account = () => {
               <nav>
                 <ul className="navDrugsUl">
                   <li className="navDrugsLi">
-                    <Link to="#" style={{ color: "#000" , textDecoration:"none"}} className={activeTab === 'available' ? 'active' : ''} onClick={() => setActiveTab("available")}>
+                    <Link
+                      to="#"
+                      style={{ color: "#000", textDecoration: "none" }}
+                      className={activeTab === "available" ? "active" : ""}
+                      onClick={() => setActiveTab("available")}
+                    >
                       Available Drugs
                     </Link>
                   </li>
                   <li className="navDrugsLi">
-                    <Link to="#" style={{ color: "#000" , textDecoration:"none"}} className={activeTab === 'taken' ? 'active' : ''}  onClick={() => setActiveTab("taken")}>
+                    <Link
+                      to="#"
+                      style={{ color: "#000", textDecoration: "none" }}
+                      className={activeTab === "taken" ? "active" : ""}
+                      onClick={() => setActiveTab("taken")}
+                    >
                       Taken Drugs
                     </Link>
                   </li>

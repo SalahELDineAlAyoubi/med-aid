@@ -10,6 +10,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@iconscout/react-unicons": "^1.1.6",
+    "@mantine/core": "^5.10.3",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
     "@mui/styled-engine-sc": "^5.11.0",
