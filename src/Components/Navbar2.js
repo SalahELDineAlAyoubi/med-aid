@@ -64,6 +64,7 @@ function Navbar2() {
 
   return (
     <AppBar
+      className="AppBar"
       style={{ backgroundColor: " #e3f2fd", marginBottom: "0px" }}
       position="static"
     >
@@ -177,8 +178,8 @@ function Navbar2() {
               </Button>
             </NavLink>
           </Box>
-          
-         <Search/>
+
+          <Search />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -202,32 +203,34 @@ function Navbar2() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-{ islogin ? <div> <NavLink to={"/account"}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{name}</Typography>
-                </MenuItem>
-              </NavLink>    <NavLink to={"/login"}>
-                <MenuItem onClick={handleCloseLogout}>
-                  <Typography textAlign="center">Log out</Typography>
-                </MenuItem>
-              </NavLink> </div>  :
-              <div>
-              <NavLink to={"/signup"}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Sign up</Typography>
-                </MenuItem>
-              </NavLink>    <NavLink to={"/login"}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Login </Typography>
-                </MenuItem>
-              </NavLink>
-              </div>
-              
-              
-              }
-
-             
-          
+              {islogin ? (
+                <div>
+                  {" "}
+                  <NavLink to={"/account"}>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{name}</Typography>
+                    </MenuItem>
+                  </NavLink>{" "}
+                  <NavLink to={"/login"}>
+                    <MenuItem onClick={handleCloseLogout}>
+                      <Typography textAlign="center">Log out</Typography>
+                    </MenuItem>
+                  </NavLink>{" "}
+                </div>
+              ) : (
+                <div>
+                  <NavLink to={"/signup"}>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Sign up</Typography>
+                    </MenuItem>
+                  </NavLink>{" "}
+                  <NavLink to={"/login"}>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Login </Typography>
+                    </MenuItem>
+                  </NavLink>
+                </div>
+              )}
             </Menu>
           </Box>
         </Toolbar>

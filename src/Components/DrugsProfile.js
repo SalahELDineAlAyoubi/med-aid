@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./DrugsProfile.css";
-import medecines from "../tmpComponents/medecine.json";
-import { fetchMedecines } from "../Redux/Medecines/medecineActions";
-import { connect } from "react-redux";
+import medecines from "../tmpComponents/medecine.json"
+import { fetchMedecines } from '../Redux/Medecines/medecineActions';
+import { connect } from 'react-redux';
 //import axios from 'axios';
+ import { UilPen } from "@iconscout/react-unicons";
 
 const DrugsProfile = ({ id }) => {
   // const item= medecines.find(item => item.id === id);
@@ -11,28 +12,33 @@ const DrugsProfile = ({ id }) => {
   //   useEffect(() => {
   //   fetchMedecines();
   //  }, []);
+  const [modalOpened, setModalOpened] = useState(false);
 
   return (
     <>
-      {medecines.slice(0, 3).map((item) => (
-        // <DrugsProfile key={item.id}/>
-        <div className="ProfileDRugs">
-          <div className="dateDrugs">
-            posted on 9 feb 2023
-          </div>
-          <div className="profileCover">
-            <div className="ProfileDRugsCover">
-              <div className="profileInfo">
-                <h4 className="profileDrugsInfo">{item.name}</h4>
-                <span className="profileInfoDesc">{item.dosage}</span>
-              </div>
-            </div>
+          {medecines.slice(0, 3).map((item) => (
+              // <DrugsProfile key={item.id}/>
+              <div className="ProfileDRugs">
+                <div className="profileCover">
+                  <div className="ProfileDRugsCover">
+                    <div className="profileInfo">
+                      <h4 className="profileDrugsInfo">
+                        {item.name}
+                      </h4>
+                      <span className="profileInfoDesc">
+                        {item.dosage}
+                      </span>
+                    </div>
+                  </div>
 
-            <img className="profileDrugImg" src={item.image} />
-          </div>
-        </div>
-      ))}
-    </>
+                  <img
+                    className="profileDrugImg"
+                    src={item.image}
+                  />
+                </div>
+              </div>
+            ))}
+            </>
   );
 };
 

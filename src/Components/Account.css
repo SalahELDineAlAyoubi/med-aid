@@ -2,7 +2,7 @@
 .profile{
     display: flex;
   }
-  
+
   .profileRight{
     flex: 9;
   }
@@ -64,3 +64,13 @@
     width: 60%;
     
   }
+
+
+        .pen {
+          position: absolute;
+          margin-left: 90%;
+          margin-top: 50px;
+          width:2rem;
+          height:2rem;
+          cursor: pointer;
+        }
