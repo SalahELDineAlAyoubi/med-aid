@@ -33,3 +33,7 @@
   color: #61dafb;
 }
 
+.button:disabled{
+  pointer-events: none;
+  background: silver;
+}

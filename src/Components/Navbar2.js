@@ -18,27 +18,39 @@ import { useLocalStorage } from "react-use-storage";
 
  import SearchIcon from "@mui/icons-material/Search";
   import InputBase from "@mui/material/InputBase";
- import { NavLink, useNavigate } from "react-router-dom";
+ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Search from "./Search";
+import { logout } from "../Redux1/actions/AuthAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import * as UserApi from "../Redux1/api/UserRequest";
 
 const pages = ["Home", "Medecines", "About", "Contact"];
 const settings = ["Profile", "Log in"];
 
 
 function Navbar2() {
-    const [islogin, setislogin, removeislogin] = useLocalStorage(
-      "islogin",
-      false
-    );
+ 
 
-  const [name, setName, removeName] = useLocalStorage("name", "");
+  
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
- 
+ const [profileUser, setProfileUser] = React.useState({});
+const params = useParams()
+const profileUserId = params.id
   let navigate = useNavigate(); 
+   const   user      = useSelector((state) => state.authReducer.authData);
+/*useEffect(() => {
+  const fetchProfileUser = async () => {
+           setProfileUser(user);
 
- 
+  };
+fetchProfileUser();
+}, [user]);
+*/
+ const dispatch = useDispatch();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -56,9 +68,11 @@ function Navbar2() {
   };
   const handleCloseLogout = () => {
     setAnchorElUser(null);
-    setislogin(false)
+    dispatch(logout());
+     
   };
 
+ 
 
   
 
@@ -203,19 +217,18 @@ function Navbar2() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {islogin ? (
+              {user ? (
                 <div>
-                  {" "}
-                  <NavLink to={"/account"}>
+                  <NavLink to="/account">
                     <MenuItem onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{name}</Typography>
+                      <Typography textAlign="center">{user.name}Name</Typography>
                     </MenuItem>
-                  </NavLink>{" "}
-                  <NavLink to={"/login"}>
+                  </NavLink>
+                  <NavLink to={'/'}>
                     <MenuItem onClick={handleCloseLogout}>
                       <Typography textAlign="center">Log out</Typography>
                     </MenuItem>
-                  </NavLink>{" "}
+                  </NavLink>
                 </div>
               ) : (
                 <div>
@@ -223,7 +236,7 @@ function Navbar2() {
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">Sign up</Typography>
                     </MenuItem>
-                  </NavLink>{" "}
+                  </NavLink>
                   <NavLink to={"/login"}>
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">Login </Typography>
