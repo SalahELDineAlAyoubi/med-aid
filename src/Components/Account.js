@@ -23,6 +23,13 @@ const profileUserId = params.id;
 const [profileUser, setProfileUser] = useState({});
 const { user } = useSelector((state) => state.authReducer.authData);
  
+  useEffect(() => {
+    const fetchProfileUser = async () => {
+   // const user1=    dispatch(getUser(user._id));
+      setProfileUser(user);
+    };
+    fetchProfileUser();
+  }, [user]);
   return (
     <div className="bodyAccount">
       <div className="profile">
@@ -34,6 +41,7 @@ const { user } = useSelector((state) => state.authReducer.authData);
                 <ProfileModal
                   modalOpened={modalOpened}
                   setModalOpened={setModalOpened}
+                  data={user}
                 />
               </div>
               <img className="profileCoverImg" />
@@ -44,13 +52,20 @@ const { user } = useSelector((state) => state.authReducer.authData);
                     ? serverPublic + user.profilePicture
                     : serverPublic + "defaultProfile.png"
                 }
+                alt="ProfileImage"
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">@{user.name}</h4>
-              <span className="profileInfoDesc" style={{ color: "#999999" }}>
-                +961 {user.phone}
-              </span>
+              <h4 className="profileInfoName">@{profileUser.name}</h4>
+              <div className="info" >
+                <div className="profileInfoDesc" style={{ color: "#999999" }}>
+                  +961 {profileUser.phone}
+                </div>
+                <div className="profileInfoDesc" style={{ color: "#999999" }}>
+                  {profileUser.location}
+                </div>
+               
+              </div>
             </div>
           </div>
           <div className="profileRightBottom">

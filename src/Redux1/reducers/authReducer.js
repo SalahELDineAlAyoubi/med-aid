@@ -17,7 +17,7 @@ const authReducer = (
 
     case "AUTH_FAIL":
       return { ...state, loading: false, error: true };
-     /* case "UPDATING_START":
+      case "UPDATING_START":
       return { ...state, updateLoading: true, error: false };
     case "UPDATING_SUCCESS":
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
@@ -30,7 +30,7 @@ const authReducer = (
 
     case "UPDATING_FAIL":
       return { ...state, updateLoading: true, error: true };
- */
+
     case "LOG_OUT":
       localStorage.clear();
       return {

@@ -74,3 +74,15 @@
           height:2rem;
           cursor: pointer;
         }
+
+
+        .info{
+            
+            display: flex;
+        }
+
+        .info>div{
+              margin: 10px;
+              
+             
+        }
