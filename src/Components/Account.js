@@ -6,13 +6,23 @@ import "./Account.css";
 import { Link } from "@mui/material";
  import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from "./Profile Model/ProfileModel";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import * as UserApi from "../Redux1/api/UserRequest";
 
 const Account = () => {
+ 
   const [name, setName] = useLocalStorage("name");
   const [number, setNumber] = useLocalStorage("number");
   const [activeTab, setActiveTab] = useState("available");
   const [modalOpened, setModalOpened] = useState(false);
-
+   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+const dispatch = useDispatch();
+const params = useParams();
+const profileUserId = params.id;
+const [profileUser, setProfileUser] = useState({});
+const { user } = useSelector((state) => state.authReducer.authData);
+ 
   return (
     <div className="bodyAccount">
       <div className="profile">
@@ -29,13 +39,17 @@ const Account = () => {
               <img className="profileCoverImg" />
               <img
                 className="profileUserImg"
-                src="https://img.icons8.com/stickers/100/null/user-male-circle.png"
+                src={
+                  user.profilePicture
+                    ? serverPublic + user.profilePicture
+                    : serverPublic + "defaultProfile.png"
+                }
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">@{name}</h4>
+              <h4 className="profileInfoName">@{user.name}</h4>
               <span className="profileInfoDesc" style={{ color: "#999999" }}>
-                +961 {number}
+                +961 {user.phone}
               </span>
             </div>
           </div>

@@ -2,46 +2,48 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./Sign.css";
 //import axios from 'axios';
-import { useLocalStorage } from "react-use-storage";
-import { useNavigate } from "react-router-dom";
+//import { useLocalStorage } from "react-use-storage";
+import { Link, useNavigate } from "react-router-dom";
+import { logIn } from "../Redux1/actions/AuthAction";
+import { useDispatch, useSelector } from "react-redux";
+
 export function Login(props) {
-  const [islogin, setislogin, removeislogin] = useLocalStorage(
+  let navigate = useNavigate();
+      const dispatch = useDispatch();
+const loading = useSelector((state) => state.authReducer.loading);
+
+  /* const [islogin, setislogin, removeislogin] = useLocalStorage(
     "islogin",
     false
-  );
-  const [name, setName, removeName] = useLocalStorage("name", '');
-  const [number, setNumber, removeNumber] = useLocalStorage("number", "");
+  );*/
+  //const [name, setName, removeName] = useLocalStorage("name", '');
+  //const [number, setNumber, removeNumber] = useLocalStorage("number", "");
   //const [_uviid, set_uviid, remove_uviid] = useLocalStorage("_uviid", "");
- 
+
   /*const [memberId, setMemberId, removeMemberId] = useLocalStorage( "MemberId",
   "");*/
-  let navigate = useNavigate();
-
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const user = useSelector((state) => state.authReducer.authData);
+
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+const handleChange = (e) => {
+  setData({ ...data, [e.target.name]: e.target.value });
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    axios
-      .post("/members/login", {
-        email,
-        password,
-      })
-      .then(function (response) {
-        if (response.data.ok) 
-        {setislogin(true);
-       //setMemberId(response.data._id);
-       console.log(response.data);  
-           
-       setName(response.data.name);
-      // set_uviid(response.data._id);
-   setNumber(response.data.phone);
-         
-         navigate("/account");}
-      });
-
- 
+     if (  !data.email || !data.password  ) {
+       setError("All fields are required");
+     }  else {
+      dispatch(logIn(data));
+      
+     }
   };
 
   return (
@@ -59,8 +61,9 @@ export function Login(props) {
                   type="text"
                   className="form-control"
                   placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  value={data.email}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -69,21 +72,23 @@ export function Login(props) {
                   type="password"
                   className="form-control"
                   placeholder="Enter your Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={data.password}
+                  onChange={handleChange}
                 />
               </div>
 
               <div className="btnGrp">
-                <button type="submit" className="btn btn-secondary btn-block">
-                  LOGIN
+                <button disabled={loading} type="submit" className="btn btn-secondary btn-block">
+                  {loading ? "Loading..." : "LOGIN"}
                 </button>
-                <a className="signUplink" href=".\SignUp">
-                  don't have an account? Sign Up
-                </a>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
                 {/* <button type="button" className="btn btn-secondary btn-block" onclick="link ='Components\SignUp.js'">SignUp</button> */}
               </div>
-
+              <Link className="signUplink" to="/signUp">
+                don't have an account? Sign Up
+              </Link>
               <div className="messageSign">
                 <div>
                   <input type="checkbox" /> Remember ME
