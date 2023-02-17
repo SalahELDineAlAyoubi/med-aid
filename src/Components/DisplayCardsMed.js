@@ -1,9 +1,21 @@
-  import { FaRegBookmark, FaInfoCircle } from "react-icons/fa";
+import { useState } from "react";
+import { FaRegBookmark, FaInfoCircle} from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import "./DisplayCardsMed.css";
  
 
 const DisplayCardsMed = ({ medData }) => {
+
+  const [available, setAvailable] = useState(true);
+
+  const toggleAvailability = (id) => {
+    setAvailable(medData.map(item => {
+      if (item.id === id) {
+        return { ...item, available: !item.available };
+      }
+      return item;
+    }));
+  };
 
   return (
     <div className="App0">
@@ -12,7 +24,17 @@ const DisplayCardsMed = ({ medData }) => {
           <div key={item.id} className="medList">
             <div className="medCard">
               <div className="img">
-                <img src={item.image} alt="med-img" className="medImage"></img>
+                <img src={item.image} alt="med-img" className="medImage" ></img>
+                {available ? (
+                <div class="book">
+                    feel free to book this for 24hrs!<br/>
+                    <button onClick={() => toggleAvailability(item.id)} className="btn btn-outline-light" style={{width:"50%"}}>book now!</button>
+                </div>
+                ) : (
+                  <div class="book">
+                    <span style={{ color: "red" }}>Unavailable</span><br/>
+                </div>
+                )}
               </div>
 
               <FaRegBookmark className={"medCard__wishlist"} />
