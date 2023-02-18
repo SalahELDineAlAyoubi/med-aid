@@ -4,16 +4,22 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../Redux1/actions/AuthAction";
+import { useLocalStorage } from "react-use-storage";
 
 export function SignUp(props) {
-      const dispatch = useDispatch();
-const loading = useSelector((state) => state.authReducer.loading);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authReducer.loading);
+   const [islogin, setislogin, removeislogin] = useLocalStorage(
+    "islogin" 
+  );
+ 
 
   const phoneRegex = /^([0-9]{2})[- .]?([0-9]{6})$/;
-  const emailRegex =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let navigate = useNavigate();
   const [error, setError] = useState("");
-     
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -21,15 +27,13 @@ const loading = useSelector((state) => state.authReducer.loading);
     confirmpass: "",
     phone: "",
   });
+    
 
   //const [confirmPass, setConfirmPass] = useState(false);
 
-const handleChange = (e) => {
-      setData({ ...data, [e.target.name]: e.target.value });
-
-}
-
- 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,11 +45,12 @@ const handleChange = (e) => {
       setError("Password must be at least 8 characters");
     } else if (!phoneRegex.test(data.phone)) {
       setError("Invalid Phone number ");
-    } else if(data.password!==data.confirmpass) {
-       setError("Confirm Password is not same ");
-    }else {
-                  
-dispatch(signUp(data))
+    } else if (data.password !== data.confirmpass) {
+      setError("Confirm Password is not same ");
+    } else { 
+      setislogin(true);
+       dispatch(signUp(data));
+     ;
     }
   };
 
@@ -119,8 +124,12 @@ dispatch(signUp(data))
               </div>
 
               <div className="btnGrp">
-                <button disabled={loading} type="submit" className="btn btn-secondary btn-block">
-                   {loading?"Loading..." :"Sign Up" } 
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="btn btn-secondary btn-block"
+                >
+                  {loading ? "Loading..." : "Sign Up"}
                 </button>
 
                 {error && <p style={{ color: "red" }}>{error}</p>}

@@ -22,13 +22,15 @@ const params = useParams();
 const profileUserId = params.id;
 const [profileUser, setProfileUser] = useState({});
 const { user } = useSelector((state) => state.authReducer.authData);
- 
+
   useEffect(() => {
     const fetchProfileUser = async () => {
-   // const user1=    dispatch(getUser(user._id));
-      setProfileUser(user);
+       setProfileUser(user);
     };
     fetchProfileUser();
+  
+   
+    
   }, [user]);
   return (
     <div className="bodyAccount">

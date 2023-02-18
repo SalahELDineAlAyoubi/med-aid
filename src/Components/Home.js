@@ -184,7 +184,7 @@ const Home = () => {
             3. Add a medicine you don't need it anymore <br></br>
           </p>
           <hr />
-          <p classNameName="mb-0">
+          <p className= "mb-0">
             <Alert.Link href="Account.js"> Sign Up Now </Alert.Link>
           </p>
         </Alert>

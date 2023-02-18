@@ -2,6 +2,7 @@
     
      background-image: url('../Images/DisplayBackground.jpg'); 
  }*/
+
   .App1{
             display: grid;
     text-align: left;
@@ -112,7 +113,14 @@
     font-size: 20px;
     color: rgb(90, 89, 89);
 }
+ .medUsername {
+    font-size: 20px;
 
+     color: brown;
+     margin-left:3% ;
+     margin-top:1% ;
+     font-weight: bold;
+ }
 .medOpDate,
 .medExp
  {
@@ -132,7 +140,10 @@
         font-size: 0.7rem;
 
     }
-
+ .medUsername {
+     font-size: 15px;
+ 
+ }
     .medOpDate,
     .medExp {
         font-size: 8px;

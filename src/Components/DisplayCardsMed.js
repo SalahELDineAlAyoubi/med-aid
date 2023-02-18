@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { FaRegBookmark, FaInfoCircle} from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./DisplayCardsMed.css";
  
 
 const DisplayCardsMed = ({ medData }) => {
+const { user } = useSelector((state) => state.authReducer.authData);
 
   const [available, setAvailable] = useState(true);
 
@@ -23,17 +25,26 @@ const DisplayCardsMed = ({ medData }) => {
         {medData.map((item) => (
           <div key={item.id} className="medList">
             <div className="medCard">
+              <div className="medUsername">{user.name}</div>
               <div className="img">
-                <img src={item.image} alt="med-img" className="medImage" ></img>
+                <img src={item.image} alt="med-img" className="medImage"></img>
                 {available ? (
-                <div class="book">
-                    feel free to book this for 24hrs!<br/>
-                    <button onClick={() => toggleAvailability(item.id)} className="btn btn-outline-light" style={{width:"50%"}}>book now!</button>
-                </div>
+                  <div class="book">
+                    feel free to book this for 24hrs!
+                    <br />
+                    <button
+                      onClick={() => toggleAvailability(item.id)}
+                      className="btn btn-outline-light"
+                      style={{ width: "50%" }}
+                    >
+                      book now!
+                    </button>
+                  </div>
                 ) : (
                   <div class="book">
-                    <span style={{ color: "red" }}>Unavailable</span><br/>
-                </div>
+                    <span style={{ color: "red" }}>Unavailable</span>
+                    <br />
+                  </div>
                 )}
               </div>
 

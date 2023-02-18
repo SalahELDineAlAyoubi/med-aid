@@ -28,29 +28,45 @@ import * as UserApi from "../Redux1/api/UserRequest";
 const pages = ["Home", "Medecines", "About", "Contact"];
 const settings = ["Profile", "Log in"];
 
+   
 
 function Navbar2() {
- 
-
-  
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
- const [profileUser, setProfileUser] = React.useState({});
-const params = useParams()
-const profileUserId = params.id
-  let navigate = useNavigate(); 
-   const   user      = useSelector((state) => state.authReducer.authData);
-/*useEffect(() => {
-  const fetchProfileUser = async () => {
-           setProfileUser(user);
+  //  const [islogin, setIslogin] = React.useState(true);
+  const [islogin, setislogin, removeislogin] = useLocalStorage("islogin");
+  //const [username, setusername, removeusername] = useLocalStorage("username" );
+  //const   {user}   = useSelector((state) => state.authReducer.authData);
 
-  };
-fetchProfileUser();
-}, [user]);
-*/
- const dispatch = useDispatch();
+  //const [user1, setUser1, removeUser1] = useLocalStorage("user1" );
 
+  //  const [username, setUsername] = React.useState("");
+  //const [use, setUse] = React.useState(true);
+  const [user1, setUser1] = React.useState({});
+  const params = useParams();
+  const profileUserId = params.id;
+  let navigate = useNavigate();
+  const [profileUser, setProfileUser] = React.useState({});
+  //const [islogin, setIsslogin] = React.useLocalStorage('islogin');
+  // const [user1, setUser] = React.useLocalStorage('usser');
+  /* useEffect(() => {
+   const fetchProfileUser = async () => {
+      setProfileUser(user);
+   };
+   fetchProfileUser();
+ }, [user]); */
+  //const { user } = useSelector((state) => state.authReducer.authData);
+  // const [user2, setUser2] = React.useState({});
+    const storedProfile = JSON.parse(localStorage.getItem("profile"));
+
+    /*useEffect(() => {
+      const fetchProfileUser = async () => {
+        //setUser2(storedProfile.user);
+        console.log(storedProfile.user);   
+      };
+      fetchProfileUser();
+    }, []);*/
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -69,12 +85,8 @@ fetchProfileUser();
   const handleCloseLogout = () => {
     setAnchorElUser(null);
     dispatch(logout());
-     
   };
-
- 
-
-  
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <AppBar
@@ -137,21 +149,28 @@ fetchProfileUser();
                 display: { xs: "block", md: "none" },
               }}
             >
+                <NavLink to={"/"}>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Home</Typography>
+                  <Typography textAlign="center">Home</Typography>
               </MenuItem>
+                </NavLink>
+                <NavLink to={"/displayMed"}>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Medecines</Typography>
+                  <Typography textAlign="center">Medecines</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">About</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Contact</Typography>
-              </MenuItem>
+                </NavLink>
+              <NavLink to={"/about"}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">About</Typography>
+                </MenuItem>
+              </NavLink>
+              <NavLink to={"/contact"}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Contact</Typography>
+                </MenuItem>
+              </NavLink>
             </Menu>
           </Box>
-
           <Box
             sx={{
               flexGrow: 1,
@@ -192,13 +211,19 @@ fetchProfileUser();
               </Button>
             </NavLink>
           </Box>
-
           <Search />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={
+                    storedProfile && storedProfile.user.profilePicture
+                      ? serverPublic + storedProfile.user.profilePicture
+                      : serverPublic + "defaultProfile.png"
+                  }
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -217,14 +242,16 @@ fetchProfileUser();
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {user ? (
+              {islogin && storedProfile ? (
                 <div>
                   <NavLink to="/account">
                     <MenuItem onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{user.name}Name</Typography>
+                      <Typography textAlign="center">
+                        {storedProfile.user.name}
+                      </Typography>
                     </MenuItem>
                   </NavLink>
-                  <NavLink to={'/'}>
+                  <NavLink>
                     <MenuItem onClick={handleCloseLogout}>
                       <Typography textAlign="center">Log out</Typography>
                     </MenuItem>
@@ -232,7 +259,7 @@ fetchProfileUser();
                 </div>
               ) : (
                 <div>
-                  <NavLink to={"/signup"}>
+                  <NavLink to={"/signUp"}>
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">Sign up</Typography>
                     </MenuItem>

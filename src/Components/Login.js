@@ -6,6 +6,7 @@ import "./Sign.css";
 import { Link, useNavigate } from "react-router-dom";
 import { logIn } from "../Redux1/actions/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocalStorage } from "react-use-storage";
 
 export function Login(props) {
   let navigate = useNavigate();
@@ -25,13 +26,16 @@ const loading = useSelector((state) => state.authReducer.loading);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const user = useSelector((state) => state.authReducer.authData);
+  //const user = useSelector((state) => state.authReducer.authData);
+  //const {user1} = useSelector((state) => state.authReducer.authData);
+  const [islogin, setislogin,removeislogin] =  useLocalStorage("islogin",false);
+  //const [user1, setUser1, removeUser1] = useLocalStorage("user1", {});
 
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-
+     
 const handleChange = (e) => {
   setData({ ...data, [e.target.name]: e.target.value });
 };
@@ -41,9 +45,12 @@ const handleChange = (e) => {
      if (  !data.email || !data.password  ) {
        setError("All fields are required");
      }  else {
+      setislogin(true);
+   
       dispatch(logIn(data));
-      
+       
      }
+ 
   };
 
   return (

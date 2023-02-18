@@ -22,7 +22,7 @@ const Contact = () => {
     console.log(conFom)
   }
   return (
-    <><div>
+    <><div style={{marginTop:'20px'}}>
       <img src={contact} />
     </div><div class="container">
         <div className="container mt-5" style={{ backgroundColor: "aliceblue" }}><br></br>
