@@ -26,7 +26,7 @@ export const fetchMedecines = () => {
     dispatch(fetchMedecinesRequest());
    
     axios
-      .get("https://jsonplaceholder.typicode.com/users")
+      .get("http://localhost:4000/posts")
       .then((res) => {
         const medecines = res.data;
         dispatch(fetchMedecinesSuccess(medecines));

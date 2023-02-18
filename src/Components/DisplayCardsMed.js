@@ -29,7 +29,7 @@ const { user } = useSelector((state) => state.authReducer.authData);
               <div className="img">
                 <img src={item.image} alt="med-img" className="medImage"></img>
                 {available ? (
-                  <div class="book">
+                  <div className="book">
                     feel free to book this for 24hrs!
                     <br />
                     <button
@@ -41,7 +41,7 @@ const { user } = useSelector((state) => state.authReducer.authData);
                     </button>
                   </div>
                 ) : (
-                  <div class="book">
+                  <div className="book">
                     <span style={{ color: "red" }}>Unavailable</span>
                     <br />
                   </div>
