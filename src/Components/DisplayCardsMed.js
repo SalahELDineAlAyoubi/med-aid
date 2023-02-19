@@ -6,8 +6,12 @@ import "./DisplayCardsMed.css";
  
 
 const DisplayCardsMed = ({ medData }) => {
-const { user } = useSelector((state) => state.authReducer.authData);
 
+  /*const { user } = useSelector((state) => {
+    console.log(JSON.stringify(state));
+    //state.authReducer.authData;
+  });
+*/
   const [available, setAvailable] = useState(true);
 
   const toggleAvailability = (id) => {
@@ -25,7 +29,7 @@ const { user } = useSelector((state) => state.authReducer.authData);
         {medData.map((item) => (
           <div key={item.id} className="medList">
             <div className="medCard">
-              <div className="medUsername">{user.name}</div>
+              <div className="medUsername"> user.name </div>
               <div className="img">
                 <img src={item.image} alt="med-img" className="medImage"></img>
                 {available ? (

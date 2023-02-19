@@ -3,7 +3,7 @@ const authReducer = (
     authData: null,
     loading: false,
     error: false,
-    //  updateLoading: false,
+     
   },
   action
 ) => {
