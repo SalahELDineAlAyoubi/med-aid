@@ -2,10 +2,12 @@ import { useState } from "react";
 import { FaRegBookmark, FaInfoCircle} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import DisplayModel from "./Display Model/DisplayModel";
 import "./DisplayCardsMed.css";
  
 
 const DisplayCardsMed = ({ medData }) => {
+  const [modalOpened, setModalOpened] = useState(false);
 
   /*const { user } = useSelector((state) => {
     console.log(JSON.stringify(state));
@@ -53,9 +55,16 @@ const DisplayCardsMed = ({ medData }) => {
               </div>
 
               <FaRegBookmark className={"medCard__wishlist"} />
-
-              <FaInfoCircle className={"medCard__info"} />
-
+              <div  >
+                <FaInfoCircle
+                  onClick={() => setModalOpened(true)}
+                  className={"medCard__info"}
+                />
+                <DisplayModel
+                  modalOpened={modalOpened}
+                  setModalOpened={setModalOpened}
+                />
+              </div>
               <div className="medCard__content">
                 <h1 className="medName">{item.name}</h1>
                 <div className="displayStack__1">

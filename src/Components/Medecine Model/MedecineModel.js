@@ -12,7 +12,7 @@ import "../Profile Model/ProfileModel.css";
           : theme.colors.gray[2]
       }
       overlayOpacity={0.55}
-      overlayBlur={3}
+      overlayBlur={0.3}
       size="55%"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
