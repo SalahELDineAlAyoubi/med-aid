@@ -9,12 +9,15 @@ import "./DisplayCardsMed.css";
 const DisplayCardsMed = ({ medData }) => {
   const [modalOpened, setModalOpened] = useState(false);
 
-  /*const { user } = useSelector((state) => {
-    console.log(JSON.stringify(state));
-    //state.authReducer.authData;
-  });
-*/
-  const [available, setAvailable] = useState(true);
+ //const { user } = useSelector((state) => state.authReducer.authData);
+ 
+ 
+
+ 
+      
+  
+ 
+  const [available, setAvailable] = useState(false);
 
   const toggleAvailability = (id) => {
     setAvailable(medData.map(item => {
@@ -27,11 +30,11 @@ const DisplayCardsMed = ({ medData }) => {
 
   return (
     <div className="App0">
-      <div className="App1">
-        {medData.map((item) => (
+       <div className="App1">
+        {   medData.map((item) => (
           <div key={item.id} className="medList">
             <div className="medCard">
-              <div className="medUsername"> user.name </div>
+              <div className="medUsername">  user.name </div>
               <div className="img">
                 <img src={item.image} alt="med-img" className="medImage"></img>
                 {available ? (
@@ -85,7 +88,7 @@ const DisplayCardsMed = ({ medData }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> 
     </div>
   );
 };

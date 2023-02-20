@@ -251,7 +251,7 @@ function Navbar2() {
                       </Typography>
                     </MenuItem>
                   </NavLink>
-                  <NavLink>
+                  <NavLink  >
                     <MenuItem onClick={handleCloseLogout}>
                       <Typography textAlign="center">Log out</Typography>
                     </MenuItem>
