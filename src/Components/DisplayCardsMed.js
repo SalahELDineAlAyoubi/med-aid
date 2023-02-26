@@ -17,7 +17,7 @@ const DisplayCardsMed = ({ medData }) => {
       
   
  
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(true);
 
   const toggleAvailability = (id) => {
     setAvailable(medData.map(item => {
@@ -48,7 +48,7 @@ const DisplayCardsMed = ({ medData }) => {
                     >
                       book now!
                     </button>
-                  </div>
+                    </div>
                 ) : (
                   <div className="book">
                     <span style={{ color: "red" }}>Unavailable</span>
@@ -70,6 +70,17 @@ const DisplayCardsMed = ({ medData }) => {
               </div>
               <div className="medCard__content">
                 <h1 className="medName">{item.name}</h1>
+                
+                {available ? (
+                  <div className="state" style={{ color: "green"}}>
+                    Available 
+                  </div>
+                ) : (
+                  
+                  <div className="state" style={{ color: "red"}}> 
+                    Unavailable 
+                  </div>
+                )}
                 <div className="displayStack__1">
                   <div className="medLocation"> {item.location}</div>
                   <div className="medOpDate">

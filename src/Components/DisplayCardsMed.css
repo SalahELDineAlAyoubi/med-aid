@@ -282,3 +282,7 @@
   .img:hover .book {
     visibility: visible; opacity: 1;
   }
+
+  .state{
+    font-size: 2%;
+  }
