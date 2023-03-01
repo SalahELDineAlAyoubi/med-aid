@@ -12,7 +12,7 @@
   }
  @media  (min-width:0px) and (max-width: 500px){
      .App1 {
-
+margin-left: 7%;
          grid-template-columns: 150px 190px;
 
      }

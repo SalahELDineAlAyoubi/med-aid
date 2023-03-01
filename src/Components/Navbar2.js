@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../Images/logo-nav.png";
 import "./Navbar2.css";
 import { useLocalStorage } from "react-use-storage";
+import Comment from "../Images/comment.png";
 
  import SearchIcon from "@mui/icons-material/Search";
   import InputBase from "@mui/material/InputBase";
@@ -149,16 +150,16 @@ function Navbar2() {
                 display: { xs: "block", md: "none" },
               }}
             >
-                <NavLink to={"/"}>
-              <MenuItem onClick={handleCloseNavMenu}>
+              <NavLink to={"/"}>
+                <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Home</Typography>
-              </MenuItem>
-                </NavLink>
-                <NavLink to={"/displayMed"}>
-              <MenuItem onClick={handleCloseNavMenu}>
+                </MenuItem>
+              </NavLink>
+              <NavLink to={"/displayMed"}>
+                <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Medecines</Typography>
-              </MenuItem>
-                </NavLink>
+                </MenuItem>
+              </NavLink>
               <NavLink to={"/about"}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
@@ -212,6 +213,9 @@ function Navbar2() {
             </NavLink>
           </Box>
           <Search />
+          <NavLink style={{marginRight:"10px"}} to={"../chat"}>
+            <img src={Comment} />
+          </NavLink>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -251,7 +255,7 @@ function Navbar2() {
                       </Typography>
                     </MenuItem>
                   </NavLink>
-                  <NavLink  >
+                  <NavLink>
                     <MenuItem onClick={handleCloseLogout}>
                       <Typography textAlign="center">Log out</Typography>
                     </MenuItem>
