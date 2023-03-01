@@ -1,9 +1,38 @@
  /* Form Styling */
+ 
  .infoForm {
   
 margin-top: -10px;
  }
 .model{
-    margin-top: 35px;
+ 
 }
   
+.medInput{
+    border: none;
+        outline: none;
+        background-color: var(--inputColor);
+        border-radius: 8px;
+        padding: 10px;
+        flex: 1;
+        margin-top: 7px;
+       
+        width: 100%;
+        height: auto;
+}
+ 
+ 
+::-webkit-scrollbar {
+    display: none;
+}
+   @media (min-width:0px) and (max-width: 600px) {
+        .textHeading {
+            font-size: 15px;
+        }
+    }
+
+    .row.date ,.row.date input {
+        margin-top: 10px;
+    }
+
+    
