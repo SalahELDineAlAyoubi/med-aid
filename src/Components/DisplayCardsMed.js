@@ -32,9 +32,9 @@ const DisplayCardsMed = ({ medData }) => {
 
   return (
     <div className="App0">
-      <div class="d-grid gap-2 col-6 mx-auto">
+      <div className="d-grid gap-2 col-6 mx-auto">
         <button
-          class="btn btn-info addMedbtn"
+          className="btn btn-info addMedbtn"
           type="button"
           onClick={() => setModaladdOpened(true)}
         >
