@@ -2,12 +2,14 @@ import { useState } from "react";
 import { FaRegBookmark, FaInfoCircle} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import AddMedModal from "./AddMedModal/AddMedModal";
 import DisplayModel from "./Display Model/DisplayModel";
 import "./DisplayCardsMed.css";
  
 
 const DisplayCardsMed = ({ medData }) => {
   const [modalOpened, setModalOpened] = useState(false);
+  const [modalAddOpened, setModaladdOpened] = useState(false);
 
  //const { user } = useSelector((state) => state.authReducer.authData);
  
@@ -18,7 +20,7 @@ const DisplayCardsMed = ({ medData }) => {
   
  
   const [available, setAvailable] = useState(true);
-
+ 
   const toggleAvailability = (id) => {
     setAvailable(medData.map(item => {
       if (item.id === id) {
@@ -30,11 +32,25 @@ const DisplayCardsMed = ({ medData }) => {
 
   return (
     <div className="App0">
-       <div className="App1">
-        {   medData.map((item) => (
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button
+          class="btn btn-info addMedbtn"
+          type="button"
+          onClick={() => setModaladdOpened(true)}
+        >
+          Add your unused medecine
+        </button>
+        <AddMedModal
+          modalOpened={modalAddOpened}
+          setModalOpened={setModaladdOpened}
+        />
+      </div>
+
+      <div className="App1">
+        {medData.map((item) => (
           <div key={item.id} className="medList">
             <div className="medCard">
-              <div className="medUsername">  user.name </div>
+              <div className="medUsername"> user.name </div>
               <div className="img">
                 <img src={item.image} alt="med-img" className="medImage"></img>
                 {available ? (
@@ -48,7 +64,7 @@ const DisplayCardsMed = ({ medData }) => {
                     >
                       book now!
                     </button>
-                    </div>
+                  </div>
                 ) : (
                   <div className="book">
                     <span style={{ color: "red" }}>Unavailable</span>
@@ -58,7 +74,7 @@ const DisplayCardsMed = ({ medData }) => {
               </div>
 
               <FaRegBookmark className={"medCard__wishlist"} />
-              <div  >
+              <div>
                 <FaInfoCircle
                   onClick={() => setModalOpened(true)}
                   className={"medCard__info"}
@@ -70,15 +86,14 @@ const DisplayCardsMed = ({ medData }) => {
               </div>
               <div className="medCard__content">
                 <h1 className="medName">{item.name}</h1>
-                
+
                 {available ? (
-                  <div className="state" style={{ color: "green"}}>
-                    Available 
+                  <div className="state" style={{ color: "green" }}>
+                    Available
                   </div>
                 ) : (
-                  
-                  <div className="state" style={{ color: "red"}}> 
-                    Unavailable 
+                  <div className="state" style={{ color: "red" }}>
+                    Unavailable
                   </div>
                 )}
                 <div className="displayStack__1">
@@ -99,7 +114,7 @@ const DisplayCardsMed = ({ medData }) => {
             </div>
           </div>
         ))}
-      </div> 
+      </div>
     </div>
   );
 };

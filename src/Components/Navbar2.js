@@ -213,9 +213,12 @@ function Navbar2() {
             </NavLink>
           </Box>
           <Search />
-          <NavLink style={{marginRight:"10px"}} to={"../chat"}>
-            <img src={Comment} />
-          </NavLink>
+          {islogin &&
+            storedProfile ?(
+              <NavLink style={{ marginRight: "10px" }} to={"../chat"}>
+                <img src={Comment} />
+              </NavLink>
+            ):<></>}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

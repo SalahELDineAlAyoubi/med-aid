@@ -286,3 +286,10 @@ margin-left: 7%;
   .state{
     font-size: 2%;
   }
+
+  .btn.btn-info.addMedbtn{
+color: rgb(5, 7, 121);
+font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }

@@ -24,10 +24,22 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={user ?<Account /> :<Navigate to="../login" />} />
-        <Route path="/login" element={user?<Navigate to="../account" />: <Login />} />
-        <Route path="/signUp" element={user?<Navigate to="../account" />:<SignUp />} />
-        <Route path="/chat" element={  <Chat/>} />
+        <Route
+          path="/account"
+          element={user ? <Account /> : <Navigate to="../login" />}
+        />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="../account" /> : <Login />}
+        />
+        <Route
+          path="/signUp"
+          element={user ? <Navigate to="../account" /> : <SignUp />}
+        />
+        <Route
+          path="/chat"
+          element={user ? <Chat /> : <Navigate to="../" />}
+        />
         <Route path="/displayMed" element={<DisplayAllCardsMed />} />
         <Route path="/search" element={<Search />} />
         <Route path="/searchedItems" element={<SearchedItems />} />
