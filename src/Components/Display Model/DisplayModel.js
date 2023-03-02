@@ -11,6 +11,7 @@ function DisplayModel({ modalOpened, setModalOpened ,item}) {
   const theme = useMantineTheme(); 
    const { user } = useSelector((state) => state.authReducer.authData);
   const [currentChat, setCurrentChat] = useState(null);
+const [myPost, setMyPost] = useState(true);
 
  useEffect(() => {
    /*const findChatUser = async () => {
@@ -44,7 +45,7 @@ function DisplayModel({ modalOpened, setModalOpened ,item}) {
        const { data } = await findChat(item.userId, user._id);
  
        setCurrentChat(data);
-       console.log(data);
+       //console.log(data);
      } catch (error) {
        console.log(error);
      }
@@ -52,6 +53,22 @@ function DisplayModel({ modalOpened, setModalOpened ,item}) {
       if (item !== null) findChatUser(); 
 
  }, [item ,user._id]);
+
+
+ useEffect(() => {
+ const testMyPost = async () => {
+   try {
+     if(item.userId==user._id)
+     setMyPost(false);
+     //console.log(data);
+   } catch (error) {
+     console.log(error);
+   }
+ };
+ if (item !== null && user !==null) testMyPost(); 
+
+ }, []);
+
 
 const navigate=useNavigate()
 const handlegotoChat =()=> {
@@ -74,7 +91,7 @@ navigate("/chat", { state:currentChat });
     >
       <div>
         {/* //put your code here */}
-        <button type="bitton" onClick={handlegotoChat}>go to chat</button>
+       { myPost && (<button type="bitton" onClick={handlegotoChat}>go to chat</button>)}
         {/* //put your code here */}
       </div>
     </Modal>

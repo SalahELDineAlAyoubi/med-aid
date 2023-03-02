@@ -1,28 +1,35 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import AddMedModal from "./AddMedModal/AddMedModal";
 import "./DisplayCardsMed.css";
  
 import CardMed from "./CardMed/CardMed";
-
+import { useEffect } from "react";
+import { getUsers } from "../Redux1/actions/UserActions";
+ 
 const DisplayCardsMed = ({ medData }) => {
 
   const [modalAddOpened, setModaladdOpened] = useState(false);
 
 const user  = useSelector((state) => state.authReducer.authData);
+  const {users, loading } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
  
- 
-
- 
-      
-  
- 
-  
   const navigate=useNavigate()
 const handlelogin =() => {
-  navigate("/login")
+  navigate("/login") 
 }
+ 
+useEffect(() => {
+   dispatch(getUsers());
+  
+ 
+}, []); 
+
+ 
+
+
   return (
     <div className="App0">
       {user ? (
@@ -53,7 +60,11 @@ const handlelogin =() => {
 
       <div className="App1">
         {medData.map((item) => (
-          <CardMed item={item} />
+          <CardMed
+            item={item}
+            usero={users.filter((user) => user._id === item.userId)[0]}
+            loading={loading}
+          />
         ))}
       </div>
     </div>

@@ -4,6 +4,8 @@
    dispatch({ type: "RETREIVING_START" });
    try {
      const { data } = await PostsApi.getPosts();
+         //console.log("Action ko receive hoa hy ye : ", data);
+
      dispatch({ type: "RETREIVING_SUCCESS", data: data });
    } catch (error) {
      console.log(error);

@@ -4,16 +4,18 @@ import DisplayModel from "../Display Model/DisplayModel";
 import { format } from "timeago.js";
 import { useState } from "react";
 import { useEffect } from 'react';
-import { getUser } from '../../Redux1/api/UserRequest';
-import { findChat } from '../../Redux1/api/ChatRequest';
-import { useSelector } from 'react-redux';
+ import { findChat } from '../../Redux1/api/ChatRequest';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../Redux1/actions/UserActions';
  
-const CardMed = ({item}) => {
-      const [modalOpened, setModalOpened] = useState(false);
-const [available, setAvailable] = useState(true);
+const CardMed = ({ item, usero, loading }) => {
+  const [modalOpened, setModalOpened] = useState(false);
+  const [available, setAvailable] = useState(true);
   const [userData, setUserData] = useState({});
+  //const { users, loading } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
-/*
+  /*
 const toggleAvailability = (id) => {
   setAvailable(
     medData.map((item) => {
@@ -24,7 +26,7 @@ const toggleAvailability = (id) => {
     })
   );
 };*/
-  useEffect(() => {
+  /* useEffect(() => {
     const getUserData = async () => {
       try {
         const { data } = await getUser(item.userId);
@@ -34,13 +36,13 @@ const toggleAvailability = (id) => {
       }
     };
     if (item !== null) getUserData();
-  }, [item]);
-
+  }, [item]);*/
+  useEffect(() => {}, []);
 
   return (
     <div className="medList">
       <div className="medCard">
-        <div className="medUsername">{userData.name} </div>
+        <div className="medUsername"> {usero.name}</div>
         <div className="date"> {format(item.createdAt)}</div>
         <div className="img">
           <img
@@ -71,6 +73,7 @@ const toggleAvailability = (id) => {
         </div>
 
         <FaRegBookmark className={"medCard__wishlist"} />
+
         <div>
           <FaInfoCircle
             onClick={() => setModalOpened(true)}
@@ -102,7 +105,7 @@ const toggleAvailability = (id) => {
             </div>
           </div>
           <div className="displayStack__2">
-            <div className="medNumber"> {userData.phone}</div>
+            <div className="medNumber"> {usero.phone}</div>
             <div className="medExp">
               <span className="openExp">Exp: </span>
               {item.expirydate}
@@ -112,6 +115,6 @@ const toggleAvailability = (id) => {
       </div>
     </div>
   );
-}
+};
 
 export default CardMed
