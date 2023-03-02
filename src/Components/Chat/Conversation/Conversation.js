@@ -35,7 +35,7 @@ const Conversation = ({ data, currentUser, online }) => {
               alt="Profile"
               className="userImage"
               style={{ width: "50px", height: "50px" }}
-            />{" "}
+            /> 
             {online && <div className="online-dot"></div>}
           </div>
           <div

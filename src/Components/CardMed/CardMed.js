@@ -5,6 +5,8 @@ import { format } from "timeago.js";
 import { useState } from "react";
 import { useEffect } from 'react';
 import { getUser } from '../../Redux1/api/UserRequest';
+import { findChat } from '../../Redux1/api/ChatRequest';
+import { useSelector } from 'react-redux';
  
 const CardMed = ({item}) => {
       const [modalOpened, setModalOpened] = useState(false);
@@ -31,9 +33,10 @@ const toggleAvailability = (id) => {
         console.log(error);
       }
     };
-
     if (item !== null) getUserData();
-  }, []);
+  }, [item]);
+
+
   return (
     <div className="medList">
       <div className="medCard">
@@ -74,6 +77,7 @@ const toggleAvailability = (id) => {
             className={"medCard__info"}
           />
           <DisplayModel
+            item={item}
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
           />

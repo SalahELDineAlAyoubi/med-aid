@@ -5,10 +5,12 @@ import { userChats } from '../../Redux1/api/ChatRequest';
 import Conversation from './Conversation/Conversation';
 import ChatBox from './ChatBox/ChatBox';
 import { io } from "socket.io-client";
+import { useLocation } from 'react-router-dom';
 
-const Chat = () => {
+const Chat = ({chat}) => {
    const socket = useRef();
   const { user } = useSelector((state) => state.authReducer.authData);
+    const location = useLocation();
 
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -17,6 +19,8 @@ const Chat = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   // Get the chat in chat section
   useEffect(() => {
+    console.log(location.state);
+    if (location) setCurrentChat(location.state);
     const getChats = async () => {
       try {
         const { data } = await userChats(user._id);
