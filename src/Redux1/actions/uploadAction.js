@@ -10,7 +10,7 @@ export const uploadImage = (data) => async (dispatch) => {
 }; 
 
 
- /*
+ 
 export const uploadPost = (data) => async (dispatch) => {
   dispatch({ type: "UPLOAD_START" });
   try {
@@ -20,5 +20,5 @@ export const uploadPost = (data) => async (dispatch) => {
     console.log(error);
     dispatch({ type: "UPLOAD_FAIL" });
   }
-};*/
+}; 
  
