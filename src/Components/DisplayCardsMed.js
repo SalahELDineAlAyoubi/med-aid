@@ -7,6 +7,7 @@ import "./DisplayCardsMed.css";
 import CardMed from "./CardMed/CardMed";
 import { useEffect } from "react";
 import { getUsers } from "../Redux1/actions/UserActions";
+import Search from "./Search";
  
 const DisplayCardsMed = ({ medData }) => {
 
@@ -32,32 +33,50 @@ useEffect(() => {
 
   return (
     <div className="App0">
-      {user ? (
-        <div className="d-grid gap-2 col-6 mx-auto">
-          <button
-            className="btn btn-info addMedbtn"
-            type="button"
-            onClick={() => setModaladdOpened(true)}
-          >
-            Add your unused medecine
-          </button>
-          <AddMedModal
-            modalOpened={modalAddOpened}
-            setModalOpened={setModaladdOpened}
-          />
-        </div>
-      ) : (
-        <div className="d-grid gap-2 col-6 mx-auto">
-          <button
-            onClick={handlelogin}
-            className="btn btn-info addMedbtn"
-            type="button"
-          >
-            Login to add your unused medecine
-          </button>
-        </div>
-      )}
+      <div className="firstrow ">
+        <div className="row ">
+          <div className=" col-11  col-md-4 search mx-auto ">
+            <Search medData={medData} />
+          </div>
 
+          <div className=" col-11   col-md-4 mx-auto ">
+            <button
+              title="Request what you need "
+              className="btn btn-info addMedbtn "
+              type="button"
+            >
+              Request medecine
+            </button>{" "}
+          </div>
+          {user ? (
+            <div className="  col-11   col-md-4 mx-auto">
+              <button
+                title="Add your unused medecine "
+                className="btn btn-info addMedbtn"
+                type="button"
+                onClick={() => setModaladdOpened(true)}
+              >
+                Add medecine
+              </button>
+
+              <AddMedModal
+                modalOpened={modalAddOpened}
+                setModalOpened={setModaladdOpened}
+              />
+            </div>
+          ) : (
+            <div className="d-grid gap-2 col-6 mx-auto">
+              <button
+                onClick={handlelogin}
+                className="btn btn-info addMedbtn"
+                type="button"
+              >
+                Login to add your unused medecine
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="App1">
         {medData.map((item) => (
           <CardMed
