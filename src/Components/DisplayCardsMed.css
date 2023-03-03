@@ -46,8 +46,7 @@
 .medCard {
     position: relative;
     background-color: #e3f2fd;
-    margin: 0.9rem;
-     
+    margin: 0.9rem;   
     flex: 1 0 25rem;
     max-width: 20rem;
     max-height: 29rem;
@@ -286,3 +285,12 @@
   .state{
     font-size: 2%;
   }
+.iconsDrugs{
+    display: flex;
+}
+
+.availableIcon{
+    position: absolute;
+    right: 0;
+    top: 25%;
+}
