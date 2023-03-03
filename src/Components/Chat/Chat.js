@@ -19,7 +19,7 @@ const Chat = ({chat}) => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   // Get the chat in chat section
   useEffect(() => {
-    console.log(location.state);
+     console.log(location.state);
     if (location) setCurrentChat(location.state);
     const getChats = async () => {
       try {

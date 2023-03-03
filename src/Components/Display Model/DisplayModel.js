@@ -9,7 +9,8 @@ import "../Profile Model/ProfileModel.css";
 import "./DisplayModel.css";
 function DisplayModel({ modalOpened, setModalOpened ,item}) {
   const theme = useMantineTheme(); 
-   const { user } = useSelector((state) => state.authReducer.authData);
+   const { user } = useSelector((state) => state.authReducer.authData)||{};
+    
   const [currentChat, setCurrentChat] = useState(null);
 const [myPost, setMyPost] = useState(true);
 
@@ -39,40 +40,57 @@ const [myPost, setMyPost] = useState(true);
      }
    };
    if (item !== null) findChatUser();*/
-    const findChatUser = async () => {
-     try {
-      
-       const { data } = await findChat(item.userId, user._id);
- 
-       setCurrentChat(data);
-       //console.log(data);
-     } catch (error) {
-       console.log(error);
-     }
-   };
-      if (item !== null) findChatUser(); 
-
- }, [item ,user._id]);
-
-
- useEffect(() => {
- const testMyPost = async () => {
-   try {
-     if(item.userId==user._id)
-     setMyPost(false);
-     //console.log(data);
-   } catch (error) {
-     console.log(error);
-   }
- };
- if (item !== null && user !==null) testMyPost(); 
+   
 
  }, []);
 
 
+ useEffect(() => {
+  if(user) {
+    const testMyPost = async () => {
+      try {
+        if (item.userId == user._id) setMyPost(false);
+        //console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (item !== null && user !== null) testMyPost();
+  }
+ }, []);
+
+
 const navigate=useNavigate()
+const handleLogin =()=> { navigate("/login")   }
 const handlegotoChat =()=> {
-navigate("/chat", { state:currentChat });
+  if(user) {
+    const findChatUser = async () => {
+      try {
+        const { data } = await findChat(item.userId, user._id);
+        setCurrentChat(data);
+        console.log(data);
+        console.log(currentChat);
+        console.log(currentChat);
+        navigate("/chat", { state: data });
+        /*  if (!data) {
+          const datae = {
+            senderId: item.userId,
+            receiverId: user._id,
+          };
+          const { data } = await createChat(datae);
+           navigate("/chat", { state: data });
+        } */
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (item !== null) {
+      findChatUser();
+    }
+  }
+    
+
 }
 
   return (
@@ -91,7 +109,18 @@ navigate("/chat", { state:currentChat });
     >
       <div>
         {/* //put your code here */}
-       { myPost && (<button type="bitton" onClick={handlegotoChat}>go to chat</button>)}
+
+        {user && myPost && (
+          <button type="bitton" onClick={handlegotoChat}>
+            go to chat
+          </button>
+        )}
+
+        {!user && (
+          <button type="button" onClick={handleLogin}>
+            Login to chat
+          </button>
+        )}
         {/* //put your code here */}
       </div>
     </Modal>
