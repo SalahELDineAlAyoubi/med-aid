@@ -63,20 +63,38 @@ const Search = ({ medData, fetchMedecines }) => {
   // const serachItem = state.serachItem;
   let navigate = useNavigate();
 
-  const [medItems, setMedItems] = useState( []);
-  const [searchResults, setSearchResults] = useLocalStorage("medecines");
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    fetchMedecines();
-    setMedItems(medecines);
-    // setSearchResults(medecines);
-    //setSearchTerm(searchTerm);
  
-  }, []);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState(null);
 
-  const handleSubmit = (e) => e.preventDefault();
-  const click = () =>  {
+ 
+  useEffect(() => {
+    /*if (!searchResults) setSearchResults(medData);
+    else {
+      console.log(searchTerm);
+
+      const resultsArray = medData.filter((item) =>
+        item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+      );
+
+      setSearchResults(resultsArray);
+      console.log(searchResults);
+      navigate("/searchedItems", {
+        state: {
+          medData: searchResults,
+        },
+      });
+    }*/
+  }, [searchTerm]);
+
+  
+ 
+
+  const handleChangeSearch = (event) => {
+ 
+    setSearchTerm(event.target.value);
+     
+/*
     if (!searchTerm) setSearchResults(medecines);
     else {
       const resultsArray = medecines.filter(
@@ -88,30 +106,23 @@ const Search = ({ medData, fetchMedecines }) => {
       setSearchResults(resultsArray);
     }
 
-     navigate("/searchedItems", {
+    navigate("/searchedItems", {
       state: {
         medData: searchResults,
       },
-    }); 
-  }
-
-  const handleChangeSearch = (e) => {
-     setSearchTerm(e.target.value);
- 
+    }); */
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="d-flex">
-        <Button onClick={click} variant="outlined" style={{marginRight:"5px"}}>
-          Search
-        </Button>
+      <form  className="d-flex">
+       
         <input
           className="form-control me-2"
           type="search"
           placeholder="Search..."
-          aria-label="Search"
-          value={searchTerm}
+           
+           
           onChange={handleChangeSearch}
         />
       </form>
@@ -119,16 +130,5 @@ const Search = ({ medData, fetchMedecines }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    medData: state.medecine,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMedecines: () => dispatch(fetchMedecines()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
-//export default Search
+ 
+ export default Search

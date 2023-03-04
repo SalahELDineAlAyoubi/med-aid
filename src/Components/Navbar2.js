@@ -212,7 +212,7 @@ function Navbar2() {
               </Button>
             </NavLink>
           </Box>
-          <Search />
+     
           {islogin &&
             storedProfile ?(
               <NavLink style={{ marginRight: "10px" }} to={"../chat"}>
