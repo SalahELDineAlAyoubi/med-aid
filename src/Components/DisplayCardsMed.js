@@ -39,15 +39,28 @@ useEffect(() => {
             <Search medData={medData} />
           </div>
 
-          <div className=" col-11   col-md-4 mx-auto ">
-            <button
-              title="Request what you need "
-              className="btn btn-info addMedbtn "
-              type="button"
-            >
-              Request medecine
-            </button>{" "}
-          </div>
+          {user ? (
+            <div className=" col-11   col-md-4 mx-auto ">
+              <button
+                title="Request what you need "
+                className="btn btn-info addMedbtn "
+                type="button"
+              >
+                Request medecine
+              </button>
+            </div>
+          ) : (
+            <div className=" col-11   col-md-4 mx-auto ">
+              <button
+                onClick={handlelogin}
+                title="Login is required to Request medecine "
+                className="btn btn-info addMedbtn "
+                type="button"
+              >
+                Login to Request medecine
+              </button>
+            </div>
+          )}
           {user ? (
             <div className="  col-11   col-md-4 mx-auto">
               <button
@@ -65,11 +78,12 @@ useEffect(() => {
               />
             </div>
           ) : (
-            <div className="d-grid gap-2 col-6 mx-auto">
+            <div className="  col-11   col-md-4 mx-auto">
               <button
                 onClick={handlelogin}
                 className="btn btn-info addMedbtn"
                 type="button"
+                title="Login to add your unused medecine"
               >
                 Login to add your unused medecine
               </button>

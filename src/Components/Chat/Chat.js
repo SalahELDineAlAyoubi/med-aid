@@ -65,7 +65,10 @@ const Chat = ({chat}) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 col-md-8 col-sm-7">
+        <div
+          className="col-12 col-md-8 col-sm-7"
+        
+        >
           <div className="Right-side-chat">
             <div style={{ width: "20rem", alignSelf: "flex-end" }}></div>
             <ChatBox
@@ -81,8 +84,9 @@ const Chat = ({chat}) => {
             <div className="Chat-container">
               <h2>Chats</h2>
               <div className="Chat-list">
-                {chats.map((chat,id) => (
-                  <div className={id}
+                {chats.map((chat, id) => (
+                  <div
+                    className={id}
                     onClick={() => {
                       setCurrentChat(chat);
                     }}
