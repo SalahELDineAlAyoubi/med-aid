@@ -2,7 +2,12 @@
     
      background-image: url('../Images/DisplayBackground.jpg'); 
  }*/
-
+ .date {
+     font-size: 15px;
+     color: rgb(90, 89, 89);
+     font-weight: 200;
+     margin-left: 1rem;
+ }
   .App1{
             display: grid;
     text-align: left;
@@ -12,17 +17,18 @@
   }
  @media  (min-width:0px) and (max-width: 500px){
      .App1 {
-
+margin-left: 7%;
          grid-template-columns: 150px 190px;
 
      }
+       
  }
  @media(min-width:501px)and (max-width:800px) {
      .App1 {
 
          grid-template-columns: 140px 200px 140px;
 
-     }
+     }  
  }
 @media ( min-width:801px) and (max-width: 1400px) {
     .App1 {
@@ -133,11 +139,21 @@
         max-width: 10rem;
         max-height: 16rem;
     }
-     
+    .medOpDate{
+      
+        display: none;
+    }
+          .date {
+              font-size: 10px;
+    
+          }
+          .medExp{
+            margin-top: -20px;
+          }
     .medLocation,
     .medNumber {
         font-size: 0.7rem;
-
+margin-top: -10px;
     }
  .medUsername {
      font-size: 15px;
@@ -285,12 +301,3 @@
   .state{
     font-size: 2%;
   }
-.iconsDrugs{
-    display: flex;
-}
-
-.availableIcon{
-    position: absolute;
-    right: 0;
-    top: 25%;
-}

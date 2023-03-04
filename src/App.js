@@ -11,6 +11,7 @@ import Search from "./Components/Search";
 import DisplayAllCardsMed from "./Components/DisplayAllCardsMed";
 import SearchedItems from "./Components/SearchedItems";
 import { useSelector } from "react-redux";
+import Chat from "./Components/Chat/Chat";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
@@ -23,9 +24,22 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={user ?<Account /> :<Navigate to="../login" />} />
-        <Route path="/login" element={user?<Navigate to="../account" />: <Login />} />
-        <Route path="/signUp" element={user?<Navigate to="../account" />:<SignUp />} />
+        <Route
+          path="/account"
+          element={user ? <Account /> : <Navigate to="../login" />}
+        />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="../account" /> : <Login />}
+        />
+        <Route
+          path="/signUp"
+          element={user ? <Navigate to="../account" /> : <SignUp />}
+        />
+        <Route
+          path="/chat"
+          element={user ? <Chat /> : <Navigate to="../" />}
+        />
         <Route path="/displayMed" element={<DisplayAllCardsMed />} />
         <Route path="/search" element={<Search />} />
         <Route path="/searchedItems" element={<SearchedItems />} />

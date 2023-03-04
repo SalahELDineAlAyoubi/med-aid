@@ -1,31 +1,27 @@
  import React, { useEffect, useState } from 'react'
-   import medecines from "../tmpComponents/medecine.json"
-    
-import { fetchMedecines } from '../Redux/Medecines/medecineActions';
-import { connect } from 'react-redux';
+     
+ import {  useDispatch, useSelector } from 'react-redux';
  import DisplayCardsMed from './DisplayCardsMed';
+import { getPosts } from '../Redux1/actions/postAction';
   
 const DisplayAllCardsMed = ({ medData, fetchMedecines }) => {
-  useEffect(() => {
-    fetchMedecines();
-  }, []);
+  const dispatch = useDispatch();
+  const { posts, loading } = useSelector((state) => state.postReducer);
+
+ useEffect(() => {
+   dispatch(getPosts());
+ }, []);
+
 
   return (
     <div>
-      <DisplayCardsMed medData={medecines} />
+      {loading ? (
+        <span style={{color:"grey",fontSize:'80px'}}>Fetching Medecines...</span>
+      ) : (
+        <DisplayCardsMed medData={posts} />
+      )}
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    medData: state.medecine,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMedecines: () => dispatch(fetchMedecines()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(DisplayAllCardsMed);
-//export default  CardDisplay 
+ 
+ export default DisplayAllCardsMed; 
