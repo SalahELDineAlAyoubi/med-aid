@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Sign.css";
 //import axios from 'axios';
 //import { useLocalStorage } from "react-use-storage";
@@ -10,8 +10,9 @@ import { useLocalStorage } from "react-use-storage";
 
 export function Login(props) {
   let navigate = useNavigate();
-      const dispatch = useDispatch();
-const loading = useSelector((state) => state.authReducer.loading);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authReducer.loading);
+  const errorMessage = useSelector((state) => state.authReducer.errorMessage);
 
   /* const [islogin, setislogin, removeislogin] = useLocalStorage(
     "islogin",
@@ -28,31 +29,48 @@ const loading = useSelector((state) => state.authReducer.loading);
   const [error, setError] = useState("");
   //const user = useSelector((state) => state.authReducer.authData);
   //const {user1} = useSelector((state) => state.authReducer.authData);
-  const [islogin, setislogin,removeislogin] =  useLocalStorage("islogin",false);
+  const [islogin, setislogin, removeislogin] = useLocalStorage(
+    "islogin",
+    false
+  );
   //const [user1, setUser1, removeUser1] = useLocalStorage("user1", {});
 
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-     
-const handleChange = (e) => {
-  setData({ ...data, [e.target.name]: e.target.value });
-};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-     if (  !data.email || !data.password  ) {
-       setError("All fields are required");
-     }  else {
-      setislogin(true);
-   
-      dispatch(logIn(data));
-       
-     }
- 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    setError("");
+  }, []);
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "CLEAR_ERROR_MESSAGE" }); // Clear the error message when the component unmounts
+    };
+  }, [dispatch]); // bas dispatch function tet8ayar mounted or unmounted components
+  useEffect(() => {
+    setError(errorMessage);
+  }, [errorMessage]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!data.email || !data.password) {
+      setError("All fields are required");
+    } else {
+      setislogin(true);
+      setError("");
+
+      dispatch(logIn(data));
+      console.log(errorMessage);
+      // setError(errorMessage);
+    }
+  };
+  useEffect(() => {
+    setError(errorMessage);
+  }, [errorMessage]);
   return (
     <div className="bodySign">
       <div className="containerSign">
@@ -86,7 +104,11 @@ const handleChange = (e) => {
               </div>
 
               <div className="btnGrp">
-                <button disabled={loading} type="submit" className="btn btn-secondary btn-block">
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="btn btn-secondary btn-block"
+                >
                   {loading ? "Loading..." : "LOGIN"}
                 </button>
                 {error && <p style={{ color: "red" }}>{error}</p>}

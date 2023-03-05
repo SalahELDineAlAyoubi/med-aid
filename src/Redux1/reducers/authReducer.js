@@ -3,21 +3,37 @@ const authReducer = (
     authData: null,
     loading: false,
     error: false,
-     
+    errorMessage:"" 
   },
   action
 ) => {
   switch (action.type) {
     case "AUTH_START":
-      return { ...state, loading: true, error: false };
+      return { ...state, loading: true, error: false, errorMessage: "" };
     case "AUTH_SUCCESS":
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
 
-      return { ...state, authData: action.data, loading: false, error: false };
+      return {
+        ...state,
+        authData: action.data,
+        loading: false,
+        error: false,
+        errorMessage: "",
+      };
 
     case "AUTH_FAIL":
-      return { ...state, loading: false, error: true };
-      case "UPDATING_START":
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: action.payload,
+      };
+    case "CLEAR_ERROR_MESSAGE":
+      return {
+        ...state,
+        errorMessage: "",
+      };
+    case "UPDATING_START":
       return { ...state, updateLoading: true, error: false };
     case "UPDATING_SUCCESS":
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
@@ -26,7 +42,7 @@ const authReducer = (
         authData: action.data,
         updateLoading: false,
         error: false,
-      }; 
+      };
 
     case "UPDATING_FAIL":
       return { ...state, updateLoading: true, error: true };
@@ -39,9 +55,7 @@ const authReducer = (
         loading: false,
         error: false,
         //updateLoading: false,
-      }; 
-
-    
+      };
 
     default:
       return state;

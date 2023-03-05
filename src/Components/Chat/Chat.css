@@ -22,7 +22,9 @@
     min-height: 87vh;
     overflow: scroll;
 }
-
+.container {
+    
+}
 .Chat-list {
     display:block ;
  

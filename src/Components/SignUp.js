@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Sign.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,17 +9,15 @@ import { useLocalStorage } from "react-use-storage";
 export function SignUp(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
-   const [islogin, setislogin, removeislogin] = useLocalStorage(
-    "islogin" 
-  );
- 
+  const errorMessage = useSelector((state) => state.authReducer.errorMessage);
+  const [islogin, setislogin, removeislogin] = useLocalStorage("islogin");
 
   const phoneRegex = /^([0-9]{2})[- .]?([0-9]{6})$/;
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let navigate = useNavigate();
-  const [error, setError] = useState("");
-
+  const [errorMsg, setErrorMsg] = useState("");
+  
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -27,33 +25,47 @@ export function SignUp(props) {
     confirmpass: "",
     phone: "",
   });
-    
 
   //const [confirmPass, setConfirmPass] = useState(false);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-
+  useEffect(() => {
+    setErrorMsg(""); // Set the error state to an empty string when the component is first rendered
+  }, []);
+ 
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "CLEAR_ERROR_MESSAGE" });  
+    };
+  }, [dispatch]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!data.name || !data.email || !data.password || !data.phone) {
-      setError("All fields are required");
+      setErrorMsg("All fields are required");
     } else if (!emailRegex.test(data.email)) {
-      setError("Invalid email address");
+      setErrorMsg("Invalid email address");
     } else if (data.password.length < 8) {
-      setError("Password must be at least 8 characters");
+      setErrorMsg("Password must be at least 8 characters");
     } else if (!phoneRegex.test(data.phone)) {
-      setError("Invalid Phone number ");
+      setErrorMsg("Invalid Phone number ");
     } else if (data.password !== data.confirmpass) {
-      setError("Confirm Password is not same ");
-    } else { 
-      setislogin(true);
-       dispatch(signUp(data));
-     ;
+      setErrorMsg("Confirm Password is not same ");
+    } else {
+    setErrorMsg(" ");
+ 
+  setislogin(true);
+
+  dispatch(signUp(data));
+ // setErrorMsg(errorMessage);
+  console.log(errorMsg);
+ 
     }
   };
-
+useEffect(() => {
+  setErrorMsg(errorMessage);
+}, [errorMessage]);
   return (
     <div className="bodySign">
       <div className="containerSign">
@@ -132,7 +144,7 @@ export function SignUp(props) {
                   {loading ? "Loading..." : "Sign Up"}
                 </button>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
               </div>
               <Link className="signUplink" to="/login">
                 Already have an account? Log In

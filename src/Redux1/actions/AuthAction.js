@@ -7,8 +7,9 @@ export const logIn = (formData) => async (dispatch) => {
     dispatch({ type: "AUTH_SUCCESS", data: data });
     // navigate("../home", { replace: true });
   } catch (error) {
-    console.log(error);
-    dispatch({ type: "AUTH_FAIL" });
+    const errorMessage = error.response.data;
+    console.log(error.response.data);
+    dispatch({ type: "AUTH_FAIL", payload: errorMessage });
   }
 };
 
@@ -16,11 +17,13 @@ export const signUp = (formData) => async (dispatch) => {
   dispatch({ type: "AUTH_START" });
   try {
     const { data } = await AuthApi.signUp(formData);
-    dispatch({ type: "AUTH_SUCCESS", data: data });
+    dispatch({ type: "AUTH_SUCCESS", data: data  });
     //navigate("../home", { replace: true });
   } catch (error) {
-    console.log(error);
-    dispatch({ type: "AUTH_FAIL" });
+  const errorMessage = error.response.data.message;  
+   // console.log(errorMessage);  
+    dispatch({ type: "AUTH_FAIL", payload: errorMessage });
+  
   }
 };
 
