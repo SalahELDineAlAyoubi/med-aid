@@ -327,6 +327,18 @@
      font-size: 2%;
  }
 
+ .iconsDrugs{
+    display: flex;
+}
+
+.availableIcon{
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 8%;
+}
+
+
  .btn.btn-info.addMedbtn {
      color: rgb(5, 7, 121);
      font-weight: 600;
