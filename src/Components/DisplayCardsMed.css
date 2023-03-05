@@ -8,281 +8,342 @@
      font-weight: 200;
      margin-left: 1rem;
  }
-  .App1{
-            display: grid;
-    text-align: left;
-            justify-content: center;
-  
-    font-family: 'Roboto Mono', monospace;
-  }
- @media  (min-width:0px) and (max-width: 500px){
+
+ .App1 {
+     display: grid;
+     text-align: left;
+     justify-content: center;
+
+     font-family: 'Roboto Mono', monospace;
+ }
+
+ @media (min-width:0px) and (max-width: 500px) {
      .App1 {
-margin-left: 7%;
+         margin-left: 7%;
          grid-template-columns: 150px 190px;
 
      }
-       
+
  }
+
  @media(min-width:501px)and (max-width:800px) {
      .App1 {
 
          grid-template-columns: 140px 200px 140px;
 
-     }  
- }
-@media ( min-width:801px) and (max-width: 1400px) {
-    .App1 {
-         grid-template-columns: 300px 270px 300px ;
-
-    }
-}
-
-@media (min-width:1401px)and (max-width:1920px) {
-    .App1 {
-        grid-template-columns: 350px 350px 350px 350px;
-      }
-}
-
-.medList {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 0rem;
-}
-
-.medCard {
-    position: relative;
-    background-color: #e3f2fd;
-    margin: 0.9rem;   
-    flex: 1 0 25rem;
-    max-width: 20rem;
-    max-height: 29rem;
-    transition: 0.2s;
-    border-radius: 10px;
-}
-
-.medCard:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
-}
-.img {
-    width: 260px;
-    height: 260px;
-}
-.medImage {
-    margin-top: 15px;
-    margin-left: 15px;
-    max-width: 100%;
-    max-height: 95%;
-    border-radius: 10px;
-}
- 
-
-.medCard__wishlist,
-.medCard__info{
-    position: absolute;
-    right: -8px;
-    margin: 17px;
-    top: 5px;
-    font-size: 1.3rem;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-
-
-.medCard__info {
-    top: 50px;
-}
-
-.medCard__content {
-    margin: 0.5rem;
-}
-
-.medName {
-    font-size: 30px;
-    margin-left: 20px;
-    color: rgb(5, 7, 121);
-    font-weight: bold;
+     }
  }
 
-.displayStack__1,
-.displayStack__2 {
-    margin: 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+ @media (min-width:801px) and (max-width: 1400px) {
+     .App1 {
+         grid-template-columns: 300px 270px 300px;
 
-.medLocation,
- .medNumber{
-    font-size: 20px;
-    color: rgb(90, 89, 89);
-}
- .medUsername {
-    font-size: 20px;
+     }
+ }
 
-     color: brown;
-     margin-left:3% ;
-     margin-top:1% ;
+ @media (min-width:1401px)and (max-width:1920px) {
+     .App1 {
+         grid-template-columns: 350px 350px 350px 350px;
+     }
+ }
+
+ .medList {
+     display: flex;
+     justify-content: space-evenly;
+     margin-top: 0rem;
+ }
+
+ .medCard {
+     position: relative;
+     background-color: #e3f2fd;
+     margin: 0.9rem;
+
+     flex: 1 0 25rem;
+     max-width: 20rem;
+     max-height: 29rem;
+     transition: 0.2s;
+     border-radius: 10px;
+ }
+
+ .medCard:hover {
+     transform: translateY(-0.5rem);
+     box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+ }
+
+ .img {
+     width: 260px;
+     height: 260px;
+ }
+
+ .medImage {
+     margin-top: 15px;
+     margin-left: 15px;
+     max-width: 100%;
+     max-height: 95%;
+     border-radius: 10px;
+ }
+
+
+ .medCard__wishlist,
+ .medCard__info {
+     position: absolute;
+     right: -8px;
+     margin: 17px;
+     top: 5px;
+     font-size: 1.3rem;
+     transition: 0.2s;
+     cursor: pointer;
+ }
+
+
+
+ .medCard__info {
+     top: 50px;
+ }
+
+ .medCard__content {
+     margin: 0.5rem;
+ }
+
+ .medName {
+     font-size: 30px;
+     margin-left: 20px;
+     color: rgb(5, 7, 121);
      font-weight: bold;
  }
-.medOpDate,
-.medExp
- {
-    font-size: 15px;
-}
-@media (min-width:0px) and (max-width:800px) {
-.medCard {
-        margin: 0.3rem;
-     
-        flex: 1 0 20rem;
-        max-width: 10rem;
-        max-height: 16rem;
-    }
-    .medOpDate{
-      
-        display: none;
-    }
-          .date {
-              font-size: 10px;
-    
-          }
-          .medExp{
-            margin-top: -20px;
-          }
-    .medLocation,
-    .medNumber {
-        font-size: 0.7rem;
-margin-top: -10px;
-    }
- .medUsername {
-     font-size: 15px;
- 
+
+ .displayStack__1,
+ .displayStack__2 {
+     margin: 15px 0;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
  }
-    .medOpDate,
-    .medExp {
-        font-size: 8px;
-    }
-.img {
-    width: 110px;
-    height: 140px;
-}
-    .medImage {
-        margin-top: 0.5rem;
-        margin-left: 0.5rem;
-        max-width: 100%;
-        max-height: 100%;
-    }
 
+ .medLocation,
+ .medNumber {
+     font-size: 20px;
+     color: rgb(90, 89, 89);
+ }
 
+ .medUsername {
+     font-size: 20px;
 
-    .medCard__wishlist,
-    .medCard__info{
-        right: -6px;
-        top: 0.2rem;
-        margin: 0.7rem;
-        font-size: 0.8rem;
-    }
+     color: brown;
+     margin-left: 3%;
+     margin-top: 1%;
+     font-weight: bold;
+ }
 
-    .medCard__info {
-        top: 30px;
+ .medOpDate,
+ .medExp {
+     font-size: 15px;
+ }
 
-    }
+ @media (min-width:0px) and (max-width:800px) {
+     .medCard {
+         margin: 0.3rem;
 
-    .medName {
-        font-size: 0.9rem;
-
-    }
-
-
-
-    .displayStack__1,
-    .displayStack__2 {
-        margin: 0.6rem 0;
-
-    }
-}
-@media(min-width: 801px) and (max-width: 1400px)  {
-
-    
-
-    .medCard {
-        margin: 0.3rem;
-        flex: 1 0 20rem;
-        max-width: 17rem;
-        max-height: 25rem;
+         flex: 1 0 20rem;
+         max-width: 10rem;
+         max-height: 16rem;
      }
 
-    .medLocation ,.medNumber {
-        font-size: 16px;
+     .medOpDate {
 
-    }
-.medOpDate,
-.medExp {
-    font-size: 13px;
-}
+         display: none;
+     }
 
-.img {
-    width: 220px;
-    height: 230px;
-}
-    .medImage {
-        margin-top: 0.5rem;
-        margin-left: 0.5rem;
-        max-width: 100%;
-        max-height: 90%;
-    }
+     .date {
+         font-size: 10px;
 
+     }
 
+     .medExp {
+         margin-top: -20px;
+     }
 
-    .medCard__wishlist,
-    .medCard__info {
-        right: 0rem;
-        top: 0.2rem;
-        margin: 0.6rem;
-        font-size: 1.rem;
-    }
+     .medLocation,
+     .medNumber {
+         font-size: 0.7rem;
+         margin-top: -10px;
+     }
 
-    .medCard__info {
-        top: 45px;
-        
-    }
+     .medUsername {
+         font-size: 15px;
 
-    .medName {
-        font-size: 1.4rem;
+     }
 
-    }
+     .medOpDate,
+     .medExp {
+         font-size: 8px;
+     }
 
+     .img {
+         width: 110px;
+         height: 140px;
+     }
 
-
-    .displayStack__1,
-    .displayStack__2 {
-        margin: 0.4rem 0;
-
-    }
+     .medImage {
+         margin-top: 0.5rem;
+         margin-left: 0.5rem;
+         max-width: 100%;
+         max-height: 100%;
+     }
 
 
 
-}
+     .medCard__wishlist,
+     .medCard__info {
+         right: -6px;
+         top: 0.2rem;
+         margin: 0.7rem;
+         font-size: 0.8rem;
+     }
+
+     .medCard__info {
+         top: 30px;
+
+     }
+
+     .medName {
+         font-size: 0.9rem;
+
+     }
 
 
-.openExp {
-    color: rgb(189, 21, 21);
-    font-weight: bold;
-}  
+
+     .displayStack__1,
+     .displayStack__2 {
+         margin: 0.6rem 0;
+
+     }
+ }
+
+ @media(min-width: 801px) and (max-width: 1400px) {
 
 
-  .btn.btn-info.addMedbtn{
-    color: rgb(5, 7, 121);
-    font-weight: 600;
-    margin-top: 1rem;
-  
-  }
-.row>.search{
-    margin-top: 1rem;
-}
-.row{
-    margin-bottom: 1rem;
-  }
 
- 
+     .medCard {
+         margin: 0.3rem;
+         flex: 1 0 20rem;
+         max-width: 17rem;
+         max-height: 25rem;
+     }
+
+     .medLocation,
+     .medNumber {
+         font-size: 16px;
+
+     }
+
+     .medOpDate,
+     .medExp {
+         font-size: 13px;
+     }
+
+     .img {
+         width: 220px;
+         height: 230px;
+     }
+
+     .medImage {
+         margin-top: 0.5rem;
+         margin-left: 0.5rem;
+         max-width: 100%;
+         max-height: 90%;
+     }
+
+
+
+     .medCard__wishlist,
+     .medCard__info {
+         right: 0rem;
+         top: 0.2rem;
+         margin: 0.6rem;
+         font-size: 1.rem;
+     }
+
+     .medCard__info {
+         top: 45px;
+
+     }
+
+     .medName {
+         font-size: 1.4rem;
+
+     }
+
+
+
+     .displayStack__1,
+     .displayStack__2 {
+         margin: 0.4rem 0;
+
+     }
+
+
+
+ }
+
+
+ .openExp {
+     color: rgb(189, 21, 21);
+     font-weight: bold;
+ }
+
+
+ .book {
+     /* (C1) DIMENSIONS */
+     box-sizing: border-box;
+     width: 100%;
+     height: 100%;
+
+     /* (C2) POSITION */
+     position: absolute;
+     top: 0;
+     left: 0;
+     text-align: center;
+     padding-top: 50%;
+
+     /* (C3) COLORS */
+     background-color: rgba(53, 96, 116, 0.7);
+     color: white;
+ }
+
+ /* (D) SHOW/HIDE */
+ .book {
+     visibility: none;
+     opacity: 0;
+     transition: opacity 0.3s;
+ }
+
+ .img:hover .book {
+     visibility: visible;
+     opacity: 1;
+ }
+
+ .state {
+     font-size: 2%;
+ }
+
+ .btn.btn-info.addMedbtn {
+     color: rgb(5, 7, 121);
+     font-weight: 600;
+     margin-top: 1rem;
+
+ }
+
+ .row>.search {
+     margin-top: 1rem;
+ }
+
+ .row.dis{
+     margin-bottom: 1rem;
+     width: 80%;
+ }
+
+ .firstrow {
+     display: flex;
+     justify-content: center;
+ }

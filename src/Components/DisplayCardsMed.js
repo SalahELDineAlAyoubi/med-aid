@@ -35,7 +35,7 @@ useEffect(() => {
   return (
     <div className="App0">
       <div className="firstrow ">
-        <div className="row ">
+        <div className="row dis">
           <div className=" col-11  col-md-4 search mx-auto ">
             <Search medData={medData} />
           </div>
