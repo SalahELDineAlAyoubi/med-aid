@@ -11,6 +11,7 @@ import Search from "./Search";
  
 const DisplayCardsMed = ({ medData }) => {
 
+
   const [modalAddOpened, setModaladdOpened] = useState(false);
 
 const user  = useSelector((state) => state.authReducer.authData);
@@ -103,6 +104,5 @@ useEffect(() => {
     </div>
   );
 };
- 
- 
- export default DisplayCardsMed;
+
+export default DisplayCardsMed;
