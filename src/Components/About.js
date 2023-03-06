@@ -29,7 +29,7 @@ const AboutUsText = styled.div`
 width: 50%;
 padding: 0 20px;
 `;
-
+ 
 const AboutUs = () => {
   return (
     <><div>

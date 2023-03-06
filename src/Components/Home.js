@@ -15,7 +15,7 @@ import Footer from './Footer';
 
 
 
-const Home = () => {
+const Home = () => { 
   const [currentIndex, setCurrentIndex] = useState(0);
   const slides = [{ url: img3 }, { url: img2 }, { url: img1 }];
   const slydeStyles = {

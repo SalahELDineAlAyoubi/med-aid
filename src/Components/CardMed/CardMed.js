@@ -39,12 +39,12 @@ const toggleAvailability = (id) => {
     if (item !== null) getUserData();
   }, [item]);*/
   useEffect(() => {}, []);
-
+ 
   return (
     <div className="medList">
       <div className="medCard">
         <div className="medUsername"> {usero.name}</div>
-        <div className="date"> {format(item.createdAt)}</div>
+        <div className="date"> {format(item.updatedAt)}</div>
         <div className="img">
           <img
             src={

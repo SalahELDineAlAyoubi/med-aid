@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
   setModalOpened(false);
  
 };
-
+ 
   return (
     <Modal
       overlayColor={
@@ -52,7 +52,7 @@ const handleSubmit = (e) => {
       }
       overlayOpacity={0.55}
       overlayBlur={3}
-      size="55%"
+      size="auto"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >

@@ -34,7 +34,7 @@ export function SignUp(props) {
   useEffect(() => {
     setErrorMsg(""); // Set the error state to an empty string when the component is first rendered
   }, []);
- 
+ console.log("hiiii");
   useEffect(() => {
     return () => {
       dispatch({ type: "CLEAR_ERROR_MESSAGE" });  

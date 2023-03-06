@@ -11,7 +11,7 @@ const DisplayAllCardsMed = ({ medData, fetchMedecines }) => {
  useEffect(() => {
    dispatch(getPosts());
  }, []);
-
+ 
 
   return (
     <div>

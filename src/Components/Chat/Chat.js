@@ -19,8 +19,7 @@ const Chat = ({chat}) => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   // Get the chat in chat section
   useEffect(() => {
-     console.log(location.state);
-    if (location) setCurrentChat(location.state);
+     if (location) setCurrentChat(location.state);
     const getChats = async () => {
       try {
         const { data } = await userChats(user._id);
@@ -40,7 +39,7 @@ const Chat = ({chat}) => {
       setOnlineUsers(users);
     });
   }, [user]);
-
+ 
   // Send Message to socket server
   useEffect(() => {
     if (sendMessage !== null) {

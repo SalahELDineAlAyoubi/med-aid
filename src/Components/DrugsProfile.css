@@ -86,3 +86,7 @@
        height: 2rem;
        cursor: pointer;
      }
+
+     .trash {
+      margin-top: 30px;
+     }

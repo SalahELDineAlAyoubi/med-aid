@@ -48,7 +48,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
   useEffect(() => {
     scroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
+ 
   // Send Message
   const handleSend = async (e) => {
     e.preventDefault();
@@ -72,8 +72,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
 
   // Receive Message from parent component
   useEffect(() => {
-    console.log("Message Arrived: ", receivedMessage);
-    if (chat !== null)
+     if (chat !== null)
       if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
         setMessages([...messages, receivedMessage]);
       }

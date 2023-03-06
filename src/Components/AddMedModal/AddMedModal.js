@@ -88,7 +88,7 @@ const handleSubmit = async (e) => {
     reset();
   }
  };
-
+ 
 
 
   return (
@@ -101,7 +101,7 @@ const handleSubmit = async (e) => {
       }
       overlayOpacity={0.55}
       overlayBlur={0.3}
-      size="70%"
+      size="auto"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
