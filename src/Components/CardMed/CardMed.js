@@ -18,6 +18,7 @@ const CardMed = ({ item, usero, loading }) => {
   const [available, setAvailable] = useState(true);
   const [data, setData] = useState(item);
  // const [userData, setUserData] = useState({});
+  const [userBook, setUserBook] = useState({});
     const {user} = useSelector((state) => state.authReducer.authData)||{} ;
     
   //const [postData, setPostData] = useState(item); 
@@ -33,6 +34,16 @@ const dispatch = useDispatch();
            const updatedData = await getPost(item._id)
  setData(updatedData.data);
      setAvailable(value);
+  };
+  
+  const handleOpenDescription = async () => {
+     
+      // const userBooked = await getUser(item.userIdBook);
+
+ //      setUserBook(userBooked.data);
+  
+   
+   setModalOpened(true);
   };
   
   
@@ -52,7 +63,7 @@ const dispatch = useDispatch();
       if (user && (user._id!==data.userId)) {
         //console.log(postData._id);
         console.log(user._id);
-        console.log(data);
+        console.log(data); 
           await bookMed(data._id, user._id);
           const updatedData = await getPost(item._id);
           setData(updatedData.data);
@@ -112,13 +123,18 @@ const dispatch = useDispatch();
 
         <div>
           <FaInfoCircle
-            onClick={() => setModalOpened(true)}
+            onClick={handleOpenDescription}
             className={"medCard__info"}
           />
           <DisplayModel
             item={data}
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
+            usero={usero}
+            available={available}
+            toggleAvailability={toggleAvailability}
+            setModalUnbookOpened={setModalUnbookOpened}
+           // userBook={userBook}
           />
         </div>
         {user && available && (
@@ -127,6 +143,7 @@ const dispatch = useDispatch();
             onClick={toggleAvailability}
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACdklEQVR4nO2WyWsUQRSHv2gQV4y4kXRVtYlgQDToyYOQiFGzqHHBi4fkIAoes+JMLdZBQUGjxslf4T8ZebPE2aeTzDAQfPCgu6q73lfvV6+q4L912yKDieOecqwrx4+yr6vAlPTRS0sjQ9qT157tpu7IyTe9iR4ZbBu8CmLfmbgeOaYck8rxseyT0iZ9kvZWQRPLnHK8rryrPFN7Cnwxcjr1zBvH1/rBpc3kOKc8Gy1mvDW+wRnjibsAnrVMgYcjF4znlSykdmlVK5xQns2mfZY3I57xmjbPZtvAxjFqPG+1o9BRU892GjleDWAci6nntvZsSXCBqMvK98aoOwwkkQntWM0StEbjiKqRwLGV5JkYyXFN0i/vdRlolCCNDMlCUZ6fewYIzEmd12ufWm4lnvkGWZotQm1ZVnlujH3grPYsaMu3rACyEM+XZprLVIZ/ONoI4Hc/ckngznDkpHHc155PGSHeSTW0hWi3Een6NDk+mzzTl9c4JUA6YFsOHLAVaClZSbHoLAuz7GvFtDebecVaDl6SYkGkEYlEqqq+BtmU54tyzCpLIptUcfOyJHQy3TnFv2SRjkUuFcvUMSrP0iZ9nf4/MID+p2PBBO6KZ90nugvgS2VnLI/38k93ASxzJvQRQDlmjedJ/wACM9rytH8Alhkd+gigHY+KdX/YAFYyDxh4qC3PMn9vWe4IwA4DynOz5dWqyo3jgfI8z5CpnJwRRI50Bqgy7biqA+/3DeBYlckAAxzEkojSniXt+V0DEJhWlhd1QQsCfcWR0m0brlxOy7clOaZVKAGUD6IlOZjotaWRocTzUg4i2YxkO5bzv+eBOcz2F+oqf+fil22mAAAAAElFTkSuQmCC"
             className="availableIcon"
+            title="Book this Medecine !"
             alt="icon"
           />
         )}
@@ -145,7 +162,7 @@ const dispatch = useDispatch();
           setModalOpened={setModalUnbookOpened}
           data={data}
           handleUnBook={handleUnBook}
-          user={user?user:{}}
+          user={user ? user : {}}
           test={true}
         />
         {!user && available && (

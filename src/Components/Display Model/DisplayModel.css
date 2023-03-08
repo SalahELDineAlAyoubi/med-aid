@@ -1,15 +1,17 @@
  .model {
         margin-top: 90px;
+       font-family: "Gill Sans", sans-serif;
  }
  
    .imageDisp {
-        width: 40%;
-       height: 80%;
-        border-radius: 10%;
-        
+         width: 80%;
+       height: 70%;
+        border-radius: 10%;  
+       
    }
    .container.cont{
-       margin-top: -20px;
+       /* margin-top: -20px; */
+      margin-bottom: 20px;
    }
   
 
@@ -23,4 +25,25 @@
    }
    .lead {
        margin-right: 10px
+       
    }
+
+ .newarrival {
+       background-color: aliceblue;
+       width: 50px;
+       color: rgb(2, 7, 92);
+       font-weight: 500;
+font-family: cursive;
+    }
+
+    .col-md-7{
+       color:#555;
+    }
+
+    .openexp {
+       color: red;
+    }
+
+    .bookedBy{
+       color: rgb(2, 7, 92);
+    }
