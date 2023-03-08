@@ -62,7 +62,8 @@ const dispatch = useDispatch();
       overlayBlur={0.3}
       size="auto"
       opened={modalOpened}
-      onClose={() => setModalOpened(false)}
+      onClose={() => {setModalOpened(false)   ;
+       window.location.reload();}}
     >
       <div className="container">
         <form onSubmit={handleSubmit}>
