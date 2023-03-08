@@ -18,7 +18,8 @@ const CardMed = ({ item, usero, loading }) => {
   const [available, setAvailable] = useState(true);
   const [data, setData] = useState(item);
  // const [userData, setUserData] = useState({});
-    const {user} = useSelector((state) => state.authReducer.authData)||{};
+    const {user} = useSelector((state) => state.authReducer.authData)||{} ;
+    
   //const [postData, setPostData] = useState(item); 
 let navigate=useNavigate()  
 const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const dispatch = useDispatch();
     };
     if (item !== null) getUserData();
   }, [item]); */
-  useEffect(() => {}, []);
+ 
 
   return (
     <div className="medList">
@@ -86,7 +87,7 @@ const dispatch = useDispatch();
             className="medImage"
           ></img>
 
-          { !(user._id === data.userId)&& user && available && (
+          {user && !(user._id === data.userId) && available && (
             <div className="book">
               feel free to book this for 24hrs!
               <br />
@@ -130,7 +131,7 @@ const dispatch = useDispatch();
           />
         )}
 
-        {      user && !available && (
+        {user && !available && (
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABvUlEQVR4nO2WUUsbQRSFP41FY0sVLBWfmj4JEtE2Wq0U+9CHlr6kRlbpg6Big/n/P+DIkLNlWDebTXYXofXCgdmZ2Tln5s69d+DZajZBS7ArGAjujIH7Wk2TvxRcCEYTkIQ5Te78whjkkA88lsx9EoIlQVfw2wjtJY/tRkRtQT8i77vv3N/dWYnbgkPBTc7OQt+raPGYsJ9p/z2NssRrglPBnwK/Biz7ssV9KXGWPOBuGvGm4LvgfgpxiheVBQgWBO8FZyVJY7yp7AKNQ+irYDiHgIPKl1DjSe8Eq4Ijwe0MAq5NkDjU4tNIEfouPWcxT8DICJO2fbH2BFclRfxwNCRzJSI9nnxlASsWdFmwcCy67fyQTcXd3J2nVrD4rV2yahdlfZt1W3BHT7DhxBWwwTTT9CMe+pKuO0w33S51cesQMDJCbtgxyuaJWgWMHHaHs/xTt4Ce4NOzAD2hCz467P5fAR8Ex3UL+NWggH4ZAQuCzoRKNq+AxDVicg3IM8GW4GfBwvuCzwXj4VHToapp/NL5lpNy8wTcW/TbysRZE7wWfImKTijTJ24PLXKdpk3jB8eJC1GajtuNE/Mv2wMh9hQJBFvbKgAAAABJRU5ErkJggg=="
             className="availableIcon"
@@ -144,7 +145,7 @@ const dispatch = useDispatch();
           setModalOpened={setModalUnbookOpened}
           data={data}
           handleUnBook={handleUnBook}
-          user={user}
+          user={user?user:{}}
           test={true}
         />
         {!user && available && (

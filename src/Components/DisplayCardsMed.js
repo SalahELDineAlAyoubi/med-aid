@@ -15,7 +15,7 @@ const DisplayCardsMed = ({ medData }) => {
   const [modalAddOpened, setModaladdOpened] = useState(false);
 
 const user  = useSelector((state) => state.authReducer.authData);
-  const {users, loading } = useSelector((state) => state.userReducer);
+  const {users, loading } = useSelector((state) => state.userReducer) ;
   const dispatch = useDispatch();
  
   const navigate=useNavigate()

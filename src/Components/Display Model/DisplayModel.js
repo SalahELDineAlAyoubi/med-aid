@@ -8,6 +8,8 @@ import Chat from "../Chat/Chat";
 import "../Profile Model/ProfileModel.css";
 import "./DisplayModel.css";
 function DisplayModel({ modalOpened, setModalOpened ,item}) {
+    const [isMobile, setIsMobile] = useState(false);
+
   const theme = useMantineTheme(); 
    const { user } = useSelector((state) => state.authReducer.authData)||{};
     
@@ -15,33 +17,8 @@ function DisplayModel({ modalOpened, setModalOpened ,item}) {
 const [myPost, setMyPost] = useState(true);
 
  useEffect(() => {
-   /*const findChatUser = async () => {
-     try {
-       const createUserChat = async () => {
-         const data = {
-           senderId: item.userId,
-           receiverId: user._id,
-         };
-         createChat(data);
-         console.log("iam herrrr");
-       };
-       const { data } = await findChat(item.userId, user._id);
-
-       if (!data) {
-         createUserChat();
-         const { data } = await findChat(item.userId, user._id);
-         setCurrentChat(data);
-         console.log("iam herrrr2");
-       }
-       setCurrentChat(data);
-       console.log(data);
-     } catch (error) {
-       console.log(error);
-     }
-   };
-   if (item !== null) findChatUser();*/
- 
-
+  
+console.log(item.image);
  }, []);
 
 
@@ -92,7 +69,16 @@ const handlegotoChat =()=> {
     
 
 }
+ useEffect(() => {
+   const handleResize = () => {
+     setIsMobile(window.innerWidth <= 768);
+   };
 
+   handleResize(); // Call handleResize function on component mount to initialize the isMobile variable
+
+   window.addEventListener("resize", handleResize);
+   return () => window.removeEventListener("resize", handleResize);
+ }, []);
   return (
     <Modal
       className="model"
@@ -103,26 +89,62 @@ const handlegotoChat =()=> {
       }
       overlayOpacity={0.2}
       overlayBlur={0.5}
-      size="55%"
+      size={isMobile ? "auto" : "80%"} // Set size to "auto" when isMobile is true, otherwise set to "80%"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <div>
-        {/* //put your code here */}
+      <div className="container cont">
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <div className="imgDisplay">
+              <img
+                className="imageDisp"
+                src={
+                  item.image
+                    ? process.env.REACT_APP_PUBLIC_FOLDER + item.image
+                    : ""
+                }
+              />
+            </div>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="display-6 fw-bold my-4">{item.name}</div>
+            <span className="display-8 fw-normal my-4">{item.dosage}</span>
+            <span className="display-8 fw-normal my-4">{item.quantity}</span>
+          </div>
+        </div>
 
-        {user && myPost && (
-          <button type="bitton" onClick={handlegotoChat}>
-            go to chat
-          </button>
-        )}
-
-        {!user && (
-          <button type="button" onClick={handleLogin}>
-            Login to chat
-          </button>
-        )}
         {/* //put your code here */}
+        <div className="row" style={{ marginTop: "10px" }}>
+          <div className="col-6 col-sm-6">
+            {user && myPost && (
+              <button
+                type="bitton"
+                className="btn btn-info "
+                onClick={handlegotoChat}
+              >
+                <span className="textbtn">go to chat</span>
+              </button>
+            )}
+
+            {!user && (
+              <button
+                className="btn btn-info bton"
+                type="button"
+                onClick={handleLogin}
+              >
+                <span className="textbtn"> Login to chat</span>
+              </button>
+            )}
+          </div>
+          <div className="col-6 col-sm-6">
+            <button type="button" className="btn btn-secondary">
+              <span className="textbtn"> Cancel</span>
+            </button>
+          </div>
+        </div>
       </div>
+      {/* //put your code here */}
     </Modal>
   );
 }

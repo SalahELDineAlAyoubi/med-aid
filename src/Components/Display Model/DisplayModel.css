@@ -1,3 +1,26 @@
  .model {
         margin-top: 90px;
  }
+ 
+   .imageDisp {
+        width: 40%;
+       height: 80%;
+        border-radius: 10%;
+        
+   }
+   .container.cont{
+       margin-top: -20px;
+   }
+  
+
+   @media (max-width: 308px )    {
+           
+
+          .textbtn{
+                 font-size: 10px;
+                 /* Set the font size of the "Login to chat" button to 16px */
+          }
+   }
+   .lead {
+       margin-right: 10px
+   }
