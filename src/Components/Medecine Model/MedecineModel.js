@@ -1,18 +1,20 @@
 import { Modal, useMantineTheme } from "@mantine/core";
+import { useEffect } from "react";
 import {   useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
  import { updatePost } from "../../Redux1/actions/postAction";
    import { uploadPost, uploadImage } from "../../Redux1/actions/uploadAction";
+import { getPost } from "../../Redux1/api/PostsRequests";
   
 import "../AddMedModal/AddMedModal.css";
 import "./MedecineModel.css";
-function MedecineModel({ modalOpened, setModalOpened,data }) {
+function MedecineModel({ modalOpened, setModalOpened,data  }) {
    const theme = useMantineTheme();
   const [formData, setFormData] = useState(data); 
 const [medImage, setMedImage] = useState(null);
 const dispatch = useDispatch();
    const { updateLoading } = useSelector((state) => state.postReducer);
-   //console.log(updateLoading);
+    //console.log(formData);
    const handleChange = (e) => {
      setFormData({ ...formData, [e.target.name]: e.target.value });
    };
@@ -22,7 +24,7 @@ const dispatch = useDispatch();
        setMedImage(img);
      }
    };
- 
+  
  const handleSubmit = (e) => {
    e.preventDefault();
    let MedData = formData;

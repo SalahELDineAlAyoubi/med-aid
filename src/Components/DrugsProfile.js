@@ -28,6 +28,12 @@ const [medDis, setMedDis] = useState([]);
     dispatch(getPosts());
   }, []);
 
+
+useEffect(() => {
+  console.log(selectedDrug);
+}, [selectedDrug]);
+
+
      useEffect(() => {
        const fetchProfileUser = async () => {
          setMedDis(posts);
@@ -36,21 +42,32 @@ const [medDis, setMedDis] = useState([]);
      }, [posts]);
    
 
-  const handleDrugSelect = (drug) => {
-    setSelectedDrug(drug);
-    
+  const handleDrugSelect =  (drug) => {
+       setSelectedDrug(drug);
+     console.log(drug);
+ console.log(selectedDrug);
+
     setModalOpened(true);
   };
   const handleDelete = (drug) => {
- console.log(drug);
+
  setSelectedDrug(drug);
   setModalDeleteOpened(true);
+   
   };
+  const handleDeleteConfirm = async () => {
+ 
+
+   dispatch(getPosts());
+   setMedDis(posts);
+   setSelectedDrug(null); // Reset selectedDrug state
+  };
+ 
   return (
     <>
       {medDis
         .filter((post) => post.userId === user._id)
-        .map((item, id) => (
+        .map((item) => (
           // <DrugsProfile key={item.id}/>
           <div className="ProfileDRugs" key={item._id}>
             <div className="profileCover">
@@ -68,6 +85,7 @@ const [medDis, setMedDis] = useState([]);
                         modalOpened={modalDeleteOpened}
                         setModalOpened={setModalDeleteOpened}
                         data={selectedDrug}
+                        handleDeleteConfirm={handleDeleteConfirm}
                       />
                     )}
                     {selectedDrug && (
@@ -75,6 +93,7 @@ const [medDis, setMedDis] = useState([]);
                         modalOpened={modalOpened}
                         setModalOpened={setModalOpened}
                         data={selectedDrug}
+                       
                       />
                     )}
                   </div>
