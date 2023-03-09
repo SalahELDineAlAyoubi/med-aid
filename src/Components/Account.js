@@ -81,19 +81,19 @@ const { user } = useSelector((state) => state.authReducer.authData);
                       className={activeTab === "available" ? "active" : ""}
                       onClick={() => setActiveTab("available")}
                     >
-                      Available Drugs
+                      My Medecines
                     </Link>
                   </li>
-                  <li className="navDrugsLi">
+                  {/* <li className="navDrugsLi">
                     <Link
                       to="#"
                       style={{ color: "#000", textDecoration: "none" }}
                       className={activeTab === "taken" ? "active" : ""}
                       onClick={() => setActiveTab("taken")}
                     >
-                      Taken Drugs
+                      Saved Medecines
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
               {activeTab === "available" && <DrugsProfile />}

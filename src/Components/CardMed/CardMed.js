@@ -28,17 +28,18 @@ const dispatch = useDispatch();
  // const dispatch = useDispatch();
  useEffect(() => {
    if (data.taken === 1) setAvailable(false);
+    
 
    //setData(item);
  }, [data]); 
+  
 
  useEffect(() => {
    setData(item);
  }, [item]); 
  
-
   const handleUnBook = async (value) => {
-           const updatedData = await getPost(item._id)
+           const updatedData = await getPost(data._id);
  setData(updatedData.data);
      setAvailable(value);
   };
@@ -72,7 +73,7 @@ const dispatch = useDispatch();
         console.log(user._id);
         console.log(data); 
           await bookMed(data._id, user._id);
-          const updatedData = await getPost(item._id);
+          const updatedData = await getPost(data._id);
           setData(updatedData.data);
         setAvailable(false);
       }
@@ -99,7 +100,7 @@ const dispatch = useDispatch();
         <div className="img">
           <img
             src={
-              item.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""
+              data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""
             }
             alt="med-img"
             className="medImage"
@@ -125,13 +126,12 @@ const dispatch = useDispatch();
             </div>
           )}
         </div>
-
-        <FaRegBookmark className={"medCard__wishlist"} />
+        {/* <FaRegBookmark className={"medCard__wishlist"} /> */}
 
         <div>
           <FaInfoCircle
             onClick={handleOpenDescription}
-            className={"medCard__info"}
+            className={"medCard__wishlist"}
           />
           <DisplayModel
             item={data}
@@ -141,7 +141,7 @@ const dispatch = useDispatch();
             available={available}
             toggleAvailability={toggleAvailability}
             setModalUnbookOpened={setModalUnbookOpened}
-           // userBook={userBook}
+            // userBook={userBook}
           />
         </div>
         {user && available && (

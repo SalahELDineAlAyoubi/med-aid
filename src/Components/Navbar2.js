@@ -22,8 +22,7 @@ import Comment from "../Images/comment.png";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Search from "./Search";
-import { logout } from "../Redux1/actions/AuthAction";
+ import { logout } from "../Redux1/actions/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as UserApi from "../Redux1/api/UserRequest";
@@ -78,6 +77,8 @@ function Navbar2() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+   
+ 
   };
 
   const handleCloseUserMenu = () => {

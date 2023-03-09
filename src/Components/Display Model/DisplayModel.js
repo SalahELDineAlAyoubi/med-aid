@@ -124,14 +124,14 @@ function DisplayModel({
                 </p>
                 <p>
                   <span className="openexp">Quantity : </span>
-                  {item.opendate}
+                  {item.quantity}
                 </p>
                 <p>
                   <span className="openexp">Location : </span>
                   {item.location}
                 </p>
                 <p>
-                  <span className="openexp">Location : </span>
+                  <span className="openexp">Phone : </span>
                   {usero.phone}
                 </p>
               </div>

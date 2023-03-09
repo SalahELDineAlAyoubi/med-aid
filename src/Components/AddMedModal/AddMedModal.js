@@ -48,7 +48,7 @@ const handleChange = (e) => {
     };
 
 const handleSubmit = async (e) => {
-  e.preventDefault();
+ e.preventDefault();
  
    if(formData.name=="") setError("Name Required")
   else if (formData.dosage == "") setError("Dosage Required");
@@ -86,7 +86,10 @@ const handleSubmit = async (e) => {
 
     dispatch(uploadPost(newPost));
     reset();
+    window.location.reload();
   }
+     
+
  };
  
 
