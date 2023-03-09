@@ -96,11 +96,13 @@ navigate("/account")
                       marginTop: "-20px",
                     }}
                   >
-                    <p>Sorry, you don't have the permission to UnBook this.</p>
+                    <p>
+                      Sorry, this medicine has already been booked by another
+                      person!
+                    </p>
                     <span style={{ color: "rgb(2, 7, 92)" }}>
-                      
                       Available in :
-                    </span> 
+                    </span>
                     {format(data.takenUntil)}
                   </div>
                 </div>

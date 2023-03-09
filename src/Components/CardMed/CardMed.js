@@ -29,8 +29,12 @@ const dispatch = useDispatch();
  useEffect(() => {
    if (data.taken === 1) setAvailable(false);
 
+   //setData(item);
+ }, [data]); 
+
+ useEffect(() => {
    setData(item);
- }, [data, item]); 
+ }, [item]); 
  
 
   const handleUnBook = async (value) => {
