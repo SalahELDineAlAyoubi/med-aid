@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { updatePost } from "../../Redux1/actions/postAction";
 import { uploadPost, uploadImage } from "../../Redux1/actions/uploadAction";
 import { deletePost, unbookMed } from "../../Redux1/api/PostsRequests";
+import { format } from "timeago.js";
 
 function UnBookModel({ modalOpened, setModalOpened, data, handleUnBook ,user,test}) {
   const theme = useMantineTheme();
@@ -95,7 +96,12 @@ navigate("/account")
                       marginTop: "-20px",
                     }}
                   >
-                    Sorry, you don't have the permission to UnBook this.
+                    <p>Sorry, you don't have the permission to UnBook this.</p>
+                    <span style={{ color: "rgb(2, 7, 92)" }}>
+                      
+                      Available in :
+                    </span> 
+                    {format(data.takenUntil)}
                   </div>
                 </div>
 

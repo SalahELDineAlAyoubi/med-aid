@@ -7,9 +7,9 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import Navbar2 from "./Components/Navbar2";
-import Search from "./Components/Search";
+//import Search from "./Components/Search";
 import DisplayAllCardsMed from "./Components/DisplayAllCardsMed";
-import SearchedItems from "./Components/SearchedItems";
+//import SearchedItems from "./Components/SearchedItems";
 import { useSelector } from "react-redux";
 import Chat from "./Components/Chat/Chat";
 
@@ -41,8 +41,8 @@ function App() {
           element={user ? <Chat /> : <Navigate to="../" />}
         />
         <Route path="/displayMed" element={<DisplayAllCardsMed />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/searchedItems" element={<SearchedItems />} />
+       {/* <Route path="/search" element={<Search />} /> */}
+        {/* <Route path="/searchedItems" element={<SearchedItems />} /> */}
       </Routes>
     </div>
   );

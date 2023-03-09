@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { useLocation } from 'react-router-dom';
 import DisplayCardsMed from './DisplayCardsMed';
 
@@ -6,6 +6,7 @@ const SearchedItems = () => {
     const location = useLocation();
     const state = location.state;
     const medData = state.medData;
+    //console.log(medData);
   return (
     <div>
       <DisplayCardsMed medData={medData} />
@@ -13,4 +14,4 @@ const SearchedItems = () => {
   )
 }
 
-export default SearchedItems
+export default SearchedItems*/

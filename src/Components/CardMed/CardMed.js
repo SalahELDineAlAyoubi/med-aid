@@ -28,7 +28,10 @@ const dispatch = useDispatch();
  // const dispatch = useDispatch();
  useEffect(() => {
    if (data.taken === 1) setAvailable(false);
- }, [data]); 
+
+   setData(item);
+ }, [data, item]); 
+ 
 
   const handleUnBook = async (value) => {
            const updatedData = await getPost(item._id)
@@ -92,7 +95,7 @@ const dispatch = useDispatch();
         <div className="img">
           <img
             src={
-              data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""
+              item.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""
             }
             alt="med-img"
             className="medImage"
