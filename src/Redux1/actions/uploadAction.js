@@ -22,3 +22,14 @@ export const uploadPost = (data) => async (dispatch) => {
   }
 }; 
  
+export const uploadRequest = (data) => async (dispatch) => {
+  dispatch({ type: "UPLOAD_REQUEST_START" });
+  try {
+    const newPost = await UploadApi.uploadRequest(data);
+    dispatch({ type: "UPLOAD_REQUEST_SUCCESS", data: newPost.data });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "UPLOAD_REQUEST_FAIL" });
+  }
+}; 
+ 

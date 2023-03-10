@@ -18,6 +18,7 @@ import logo from "../Images/logo-nav.png";
 import "./Navbar2.css";
 import { useLocalStorage } from "react-use-storage";
 import Comment from "../Images/comment.png";
+import noti from "../Images/noti1.png";
 
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -26,6 +27,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as UserApi from "../Redux1/api/UserRequest";
+import { Navbar } from "react-bootstrap";
 
 const pages = ["Home", "Medecines", "About", "Contact"];
 const settings = ["Profile", "Log in"];
@@ -161,11 +163,18 @@ function Navbar2() {
                   <Typography textAlign="center">Medecines</Typography>
                 </MenuItem>
               </NavLink>
+              <NavLink to={"/requests"}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Requests</Typography>
+                </MenuItem>
+              </NavLink>
+
               <NavLink to={"/about"}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
               </NavLink>
+
               <NavLink to={"/contact"}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact</Typography>
@@ -196,6 +205,14 @@ function Navbar2() {
                 Medecines
               </Button>
             </NavLink>
+            <NavLink to={"/requests"}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                Requests
+              </Button>
+            </NavLink>
             <NavLink to={"/about"}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -214,6 +231,13 @@ function Navbar2() {
             </NavLink>
           </Box>
 
+          {islogin && user ? (
+            <NavLink style={{ marginRight: "10px" }} to={"../notifications"}>
+              <img src={noti} style={{  width:"35px"}} />
+            </NavLink>
+          ) : (
+            <></>
+          )}
           {islogin && user ? (
             <NavLink style={{ marginRight: "10px" }} to={"../chat"}>
               <img src={Comment} />

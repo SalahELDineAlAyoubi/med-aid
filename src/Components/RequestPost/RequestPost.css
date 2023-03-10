@@ -1,0 +1,17 @@
+.card-img-top.imageReq{
+    width: 10%;
+    height: 10%;
+}
+ .quantite{
+    margin-top:-10px ;
+ }
+ .tittle{
+    color: red;
+ }
+ 
+ .postedTime {
+   font-weight: bold;
+   color: rgb(108, 104, 104);
+ }
+
+  

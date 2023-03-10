@@ -12,6 +12,8 @@ import DisplayAllCardsMed from "./Components/DisplayAllCardsMed";
 //import SearchedItems from "./Components/SearchedItems";
 import { useSelector } from "react-redux";
 import Chat from "./Components/Chat/Chat";
+import RequestsMedecines from "./Components/RequestsMedecines/RequestsMedecines";
+import AcceptingRequest from "./Components/AcceptingRequest/AcceptingRequest";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
@@ -41,6 +43,9 @@ function App() {
           element={user ? <Chat /> : <Navigate to="../" />}
         />
         <Route path="/displayMed" element={<DisplayAllCardsMed />} />
+        <Route path="/requests" element={<RequestsMedecines />} />
+        <Route path="/notifications" element={user ? <AcceptingRequest />: <Navigate to="../" />} />
+        <Route path="*" element={<Navigate to="../" />} />
        {/* <Route path="/search" element={<Search />} /> */}
         {/* <Route path="/searchedItems" element={<SearchedItems />} /> */}
       </Routes>

@@ -9,12 +9,14 @@ import { useEffect } from "react";
 import { getUsers } from "../Redux1/actions/UserActions";
 //import Search from "./Search";
 import { searchPosts } from "../Redux1/api/PostsRequests";
+import RequestMedModal from "./RequestMedModal/RequestMedModal";
  
 const DisplayCardsMed = ({ medData }) => {
 const [searchTerm, setSearchTerm] = useState("");
  
  
   const [modalAddOpened, setModaladdOpened] = useState(false);
+  const [requestModalAddOpened, setRequestModalAddOpened] = useState(false);
   const [dispalyedItems, setDispalyedItems] = useState(medData);
 
 const user  = useSelector((state) => state.authReducer.authData);
@@ -60,9 +62,14 @@ useEffect(() => {
                 title="Request what you need "
                 className="btn btn-info addMedbtn "
                 type="button"
+                onClick={() => setRequestModalAddOpened(true)}
               >
                 Request medecine
               </button>
+              <RequestMedModal
+                modalOpened={requestModalAddOpened}
+                setModalOpened={setRequestModalAddOpened}
+              />
             </div>
           ) : (
             <div className=" col-11   col-md-4 mx-auto ">
@@ -122,18 +129,13 @@ useEffect(() => {
         </div>
       </div>
       <div className="App1">
-        {dispalyedItems.map(
-          (item) => (
-             
-             
-              <CardMed
-                item={item}
-                usero={users.filter((user) => user._id === item.userId)[0]}
-                loading={loading}
-              /> 
-          
-          )
-        )}
+        {dispalyedItems.map((item) => (
+          <CardMed
+            item={item}
+            usero={users.filter((user) => user._id === item.userId)[0]}
+            loading={loading}
+          />
+        ))}
       </div>
     </div>
   );

@@ -16,7 +16,22 @@ const DisplayAllCardsMed = ({ medData, fetchMedecines }) => {
   return (
     <div>
       {loading ? (
-        <span style={{color:"grey",fontSize:'80px'}}>Fetching Medecines...</span>
+        <div style={{ background: "white" }}>
+          <span style={{ color: "grey", fontSize: "60px" }}>Fetching</span>
+          <div
+            class="spinner-border"
+            style={{
+              width: "50px",
+              height: "50px",
+              fontSize: "20px",
+              marginLeft: "10px",
+              marginTop: "250px",
+            }}
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
       ) : (
         <DisplayCardsMed medData={posts} />
       )}
