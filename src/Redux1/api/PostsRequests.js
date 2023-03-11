@@ -6,6 +6,7 @@ const API = axios.create({ baseURL: "http://localhost:4000" });
 export const getPosts = () => API.get(`/posts/`) ;
 export const getPost = (id) => API.get(`/posts/${id}`); ;
 export const updatePost = (id, formData) => API.put(`/posts/${id}`, formData);
+export const acceptRequest = (id, note) => API.put(`/posts/accept/${id}`, { note });
 //export const getBookedPost = (userId) => API.post(`/posts/mybookepost`,  { userId } );
 export const searchPosts = ( searchTermMed) => API.post(`/posts/filter`, { searchTermMed });
 export const deletePost = (id, userId) => API.delete(`/posts/${id}`,{data:{userId}});

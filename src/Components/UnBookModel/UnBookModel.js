@@ -25,7 +25,7 @@ let navigate=useNavigate()
   
   const handleSubmitRequests =   (e) => {
     e.preventDefault();
-navigate("/account")
+navigate("/notifications")
    
      
   };

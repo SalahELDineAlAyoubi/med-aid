@@ -17,7 +17,7 @@ const AcceptingRequest = () => {
 
   return (
     <div className="backgroung">
-      {getting ? (
+      {getting && myRequests && (
         <div>
           <span style={{ color: "grey", fontSize: "80px" }}></span>
           <div
@@ -34,10 +34,13 @@ const AcceptingRequest = () => {
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-      ) : (
-        myRequests.map((item) => (
-          <AccepRejectCart  item={item}/>
-        ))
+      )}
+
+      {!getting &&
+        myRequests &&
+        myRequests.map((item) => <AccepRejectCart item={item} />)}
+      {!getting && myRequests.length === 0 && (
+        <div className="noRequest">No requests !</div>
       )}
     </div>
   );

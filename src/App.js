@@ -14,6 +14,8 @@ import { useSelector } from "react-redux";
 import Chat from "./Components/Chat/Chat";
 import RequestsMedecines from "./Components/RequestsMedecines/RequestsMedecines";
 import AcceptingRequest from "./Components/AcceptingRequest/AcceptingRequest";
+import Noti from "./Components/AcceptingRequest/Noti";
+import Acceptaion from "./Components/AcceptingRequest/Acceptaion";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
@@ -38,15 +40,19 @@ function App() {
           path="/signUp"
           element={user ? <Navigate to="../account" /> : <SignUp />}
         />
-        <Route
-          path="/chat"
-          element={user ? <Chat /> : <Navigate to="../" />}
-        />
+        <Route path="/chat" element={user ? <Chat /> : <Navigate to="../" />} />
         <Route path="/displayMed" element={<DisplayAllCardsMed />} />
         <Route path="/requests" element={<RequestsMedecines />} />
-        <Route path="/notifications" element={user ? <AcceptingRequest />: <Navigate to="../" />} />
+        <Route
+          path="/notifications"
+          element={user ? <Noti rey={"notifications"} /> : <Navigate to="../" />}
+        >
+          <Route index element={<AcceptingRequest />} />
+          <Route path="myrequests" element={<AcceptingRequest />} />
+          <Route path="alert" element={<Acceptaion />} />
+        </Route>
         <Route path="*" element={<Navigate to="../" />} />
-       {/* <Route path="/search" element={<Search />} /> */}
+        {/* <Route path="/search" element={<Search />} /> */}
         {/* <Route path="/searchedItems" element={<SearchedItems />} /> */}
       </Routes>
     </div>

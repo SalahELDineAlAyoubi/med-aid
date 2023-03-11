@@ -11,7 +11,7 @@ import { bookMed, getPost, unbookMed } from '../../Redux1/api/PostsRequests';
 import { useNavigate } from 'react-router-dom';
 import UnBookModel from '../UnBookModel/UnBookModel';
 import { getUser } from '../../Redux1/api/UserRequest';
-  
+  import taslim from "../../Images/taslim.png"
 const CardMed = ({ item, usero, loading }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [modalUnbookOpened, setModalUnbookOpened] = useState(false);
@@ -27,7 +27,7 @@ const dispatch = useDispatch();
 
  // const dispatch = useDispatch();
  useEffect(() => {
-   if (data.taken === 1) setAvailable(false);
+   if (data.taken === 1||data.taken === 2)  setAvailable(false);
     
 
    //setData(item);
@@ -106,20 +106,23 @@ const dispatch = useDispatch();
             className="medImage"
           ></img>
 
-          {user && !(user._id === data.userId) && available && (
-            <div className="book">
-              feel free to book this for 24hrs!
-              <br />
-              <button
-                onClick={toggleAvailability}
-                className="btn btn-outline-light"
-                style={{ width: "50%" }}
-              >
-                book now!
-              </button>
-            </div>
-          )}
-          {user && !available && (
+          {data.taken !== 2 &&
+            user &&
+            !(user._id === data.userId) &&
+            available && (
+              <div className="book">
+                feel free to book this for 24hrs!
+                <br />
+                <button
+                  onClick={toggleAvailability}
+                  className="btn btn-outline-light"
+                  style={{ width: "50%" }}
+                >
+                  book now!
+                </button>
+              </div>
+            )}
+          {data.taken !== 2 && user && !available && (
             <div className="book">
               <span style={{ color: "red" }}>Unavailable</span>
               <br />
@@ -144,7 +147,7 @@ const dispatch = useDispatch();
             // userBook={userBook}
           />
         </div>
-        {user && available && (
+        {data.taken !== 2 && user && available && (
           <img
             style={{ cursor: "pointer" }}
             onClick={toggleAvailability}
@@ -155,7 +158,7 @@ const dispatch = useDispatch();
           />
         )}
 
-        {user && !available && (
+        {data.taken !== 2 && user && !available && (
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABvUlEQVR4nO2WUUsbQRSFP41FY0sVLBWfmj4JEtE2Wq0U+9CHlr6kRlbpg6Big/n/P+DIkLNlWDebTXYXofXCgdmZ2Tln5s69d+DZajZBS7ArGAjujIH7Wk2TvxRcCEYTkIQ5Te78whjkkA88lsx9EoIlQVfw2wjtJY/tRkRtQT8i77vv3N/dWYnbgkPBTc7OQt+raPGYsJ9p/z2NssRrglPBnwK/Biz7ssV9KXGWPOBuGvGm4LvgfgpxiheVBQgWBO8FZyVJY7yp7AKNQ+irYDiHgIPKl1DjSe8Eq4Ijwe0MAq5NkDjU4tNIEfouPWcxT8DICJO2fbH2BFclRfxwNCRzJSI9nnxlASsWdFmwcCy67fyQTcXd3J2nVrD4rV2yahdlfZt1W3BHT7DhxBWwwTTT9CMe+pKuO0w33S51cesQMDJCbtgxyuaJWgWMHHaHs/xTt4Ce4NOzAD2hCz467P5fAR8Ex3UL+NWggH4ZAQuCzoRKNq+AxDVicg3IM8GW4GfBwvuCzwXj4VHToapp/NL5lpNy8wTcW/TbysRZE7wWfImKTijTJ24PLXKdpk3jB8eJC1GajtuNE/Mv2wMh9hQJBFvbKgAAAABJRU5ErkJggg=="
             className="availableIcon"
@@ -164,6 +167,7 @@ const dispatch = useDispatch();
             style={{ cursor: "pointer" }}
           />
         )}
+
         <UnBookModel
           modalOpened={modalUnbookOpened}
           setModalOpened={setModalUnbookOpened}
@@ -172,7 +176,7 @@ const dispatch = useDispatch();
           user={user ? user : {}}
           test={true}
         />
-        {!user && available && (
+        {data.taken !== 2 && !user && available && (
           <img
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/login")}
@@ -182,7 +186,7 @@ const dispatch = useDispatch();
             alt="icon"
           />
         )}
-        {!user && !available && (
+        {data.taken !== 2 && !user && !available && (
           <img
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/login")}
@@ -190,6 +194,15 @@ const dispatch = useDispatch();
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABvUlEQVR4nO2WUUsbQRSFP41FY0sVLBWfmj4JEtE2Wq0U+9CHlr6kRlbpg6Big/n/P+DIkLNlWDebTXYXofXCgdmZ2Tln5s69d+DZajZBS7ArGAjujIH7Wk2TvxRcCEYTkIQ5Te78whjkkA88lsx9EoIlQVfw2wjtJY/tRkRtQT8i77vv3N/dWYnbgkPBTc7OQt+raPGYsJ9p/z2NssRrglPBnwK/Biz7ssV9KXGWPOBuGvGm4LvgfgpxiheVBQgWBO8FZyVJY7yp7AKNQ+irYDiHgIPKl1DjSe8Eq4Ijwe0MAq5NkDjU4tNIEfouPWcxT8DICJO2fbH2BFclRfxwNCRzJSI9nnxlASsWdFmwcCy67fyQTcXd3J2nVrD4rV2yahdlfZt1W3BHT7DhxBWwwTTT9CMe+pKuO0w33S51cesQMDJCbtgxyuaJWgWMHHaHs/xTt4Ce4NOzAD2hCz467P5fAR8Ex3UL+NWggH4ZAQuCzoRKNq+AxDVicg3IM8GW4GfBwvuCzwXj4VHToapp/NL5lpNy8wTcW/TbysRZE7wWfImKTijTJ24PLXKdpk3jB8eJC1GajtuNE/Mv2wMh9hQJBFvbKgAAAABJRU5ErkJggg=="
             className="availableIcon"
             alt="icon"
+          />
+        )}
+        {data.taken === 2 &&  !available && (
+          <img
+            src={taslim}
+            className="availableIcon"
+            alt="icon"
+            title="Waiting for Receive"
+            style={{ cursor: "pointer" }}
           />
         )}
         <div className="medCard__content">

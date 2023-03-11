@@ -1,0 +1,18 @@
+.nested {
+   color: rgb(170, 6, 6) ;
+border : 2px dotted rgb(3, 3, 60); 
+margin-right: 10px;
+ width: 150px;
+ height: 30px;
+
+}
+ 
+.navi{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+ .nested.active {
+    background-color: #c2dff4;}
+
+  
