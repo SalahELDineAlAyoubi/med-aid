@@ -16,11 +16,29 @@ useEffect(() => {
 }, []); 
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getPosts());
   }, []);
   return (
     <div>
-      {posts
+      {loading && posts && (
+        <div style={{ backgroundColor: "white" }}>
+          <span style={{ color: "grey", fontSize: "80px" }}></span>
+          <div
+            class="spinner-border"
+            style={{
+              width: "50px",
+              height: "50px",
+              fontSize: "20px",
+              marginLeft: "10px",
+              marginTop: "200px",
+            }}
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
+      {!loading &&posts
         .filter((post) => post.userIdBook === user._id && post.taken === 2)
         .map((item) => (
           <div>
@@ -30,8 +48,9 @@ useEffect(() => {
             />
           </div>
         ))}
-      {posts.filter((post) => post.userIdBook === user._id && post.taken === 2)
-        .length === 0 && <div className="noRequest">No Notifications !</div>}
+      {!loading &&
+        posts.filter((post) => post.userIdBook === user._id && post.taken === 2)
+          .length === 0 && <div className="noRequest">No Notifications !</div>}
     </div>
   );
 }

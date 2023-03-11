@@ -4,7 +4,7 @@
    dispatch({ type: "RETREIVING_START" });
    try {
      const { data } = await PostsApi.getPosts();
-          console.log("Action ko receive hoa hy ye : ", data);
+          //console.log("Action ko receive hoa hy ye : ", data);
 
      dispatch({ type: "RETREIVING_SUCCESS", data: data });
    } catch (error) {
@@ -17,7 +17,7 @@
    dispatch({ type: "UPDATE_POST_START" });
    try {
      const { data } = await PostsApi.updatePost(id, formData);
-      console.log("Action ko receive hoa hy ye : ", data);
+     // console.log("Action ko receive hoa hy ye : ", data);
      dispatch({ type: "UPDATE_POST_SUCCESS", data: data });
    } catch (error) {
          console.log(error);
@@ -27,14 +27,3 @@
  }; 
  
 
-/*
- export const deletePost = (id, userId) => async (dispatch) => {
-   dispatch({ type: "DELETE_POST_START" });
-   try {
-     await PostsApi.deletePost(id, { userId: userId });
-     dispatch({ type: "DELETE_POST_SUCCESS", payload: id });
-   } catch (error) {
-     dispatch({ type: "DELETE_POST_FAIL" });
-   }
- };
-*/

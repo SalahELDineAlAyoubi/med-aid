@@ -12,14 +12,8 @@ function AddMedModal({ modalOpened, setModalOpened }) {
   const { user } = useSelector((state) => state.authReducer.authData);
     const loading = useSelector((state) => state.postReducer.uploading);
 
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-const dispatch = useDispatch();
-  const name = useRef();
-  const dosage = useRef();
-  const quantiy = useRef();
-  const opendate = useRef();
-  const expirydate = useRef();
-  const location = useRef();
+ const dispatch = useDispatch();
+ 
  
  const onImageChange = (event) => {
    if (event.target.files && event.target.files[0]) {
@@ -50,12 +44,12 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
  e.preventDefault();
  
-   if(formData.name=="") setError("Name Required")
-  else if (formData.dosage == "") setError("Dosage Required");
-  else if (formData.location == "") setError("Location Required");
-  else if (formData.quantity == "") setError("Quantity Required");
-   else if(formData.opendate=="") setError("OpenDate Required");
-   else if(formData.expirydate=="") setError("ExpiryDate Required");
+   if(formData.name==="") setError("Name Required")
+  else if (formData.dosage === "") setError("Dosage Required");
+  else if (formData.location === "") setError("Location Required");
+  else if (formData.quantity === "") setError("Quantity Required");
+   else if(formData.opendate==="") setError("OpenDate Required");
+   else if(formData.expirydate==="") setError("ExpiryDate Required");
    else if(image==null) setError("Image Required");
   else  {
     setError("");

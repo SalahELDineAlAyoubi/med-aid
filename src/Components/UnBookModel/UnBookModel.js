@@ -1,10 +1,7 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { updatePost } from "../../Redux1/actions/postAction";
-import { uploadPost, uploadImage } from "../../Redux1/actions/uploadAction";
-import { deletePost, unbookMed } from "../../Redux1/api/PostsRequests";
+import { unbookMed } from "../../Redux1/api/PostsRequests";
 import { format } from "timeago.js";
 
 function UnBookModel({ modalOpened, setModalOpened, data, handleUnBook ,user,test}) {

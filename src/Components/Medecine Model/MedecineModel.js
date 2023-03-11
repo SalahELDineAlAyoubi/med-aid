@@ -1,10 +1,8 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import { useEffect } from "react";
 import {   useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
  import { updatePost } from "../../Redux1/actions/postAction";
-   import { uploadPost, uploadImage } from "../../Redux1/actions/uploadAction";
-import { getPost } from "../../Redux1/api/PostsRequests";
+   import {  uploadImage } from "../../Redux1/actions/uploadAction";
   
 import "../AddMedModal/AddMedModal.css";
 import "./MedecineModel.css";

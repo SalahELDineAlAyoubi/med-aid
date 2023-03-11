@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./DrugsProfile.css";
- import { connect, useDispatch, useSelector } from 'react-redux';
+ import {  useDispatch, useSelector } from 'react-redux';
 //import axios from 'axios';
- import { UilPen, UilTrash, UilTrashAlt } from "@iconscout/react-unicons";
+ import { UilPen,  UilTrashAlt } from "@iconscout/react-unicons";
 import MedecineModal from "./Medecine Model/MedecineModel";
 import { getPosts } from "../Redux1/actions/postAction";
 import DeleteMedModal from "./DeleteMedModal/DeleteMedModal";
@@ -22,20 +22,14 @@ const [medDis, setMedDis] = useState([]);
     );
 
    
-  // const item= medecines.find(item => item.id === id);
-/*useEffect(() => {
-  const fetchProfileUser = async () => {
-    setMedDis(posts);
-  };
-  fetchProfileUser();
-}, [posts]);*/
+
   useEffect(() => {
     dispatch(getPosts());
   }, []);
 
 
 useEffect(() => {
-  console.log(selectedDrug);
+//  console.log(selectedDrug);
 }, [selectedDrug]);
 
 
@@ -49,8 +43,8 @@ useEffect(() => {
 
   const handleDrugSelect =  (drug) => {
        setSelectedDrug(drug);
-     console.log(drug);
- console.log(selectedDrug);
+    // console.log(drug);
+// console.log(selectedDrug);
 
     setModalOpened(true);
   };

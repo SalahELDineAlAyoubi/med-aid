@@ -12,8 +12,7 @@ import * as UserApi from "../Redux1/api/UserRequest";
 
 const Account = () => {
  
-  //const [name, setName] = useLocalStorage("name");
- // const [number, setNumber] = useLocalStorage("number");
+
   const [activeTab, setActiveTab] = useState("available");
   const [modalOpened, setModalOpened] = useState(false);
    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Sign.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../Redux1/actions/AuthAction";
@@ -26,7 +25,6 @@ export function SignUp(props) {
     phone: "",
   });
 
-  //const [confirmPass, setConfirmPass] = useState(false);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -58,7 +56,6 @@ export function SignUp(props) {
   setislogin(true);
 
   dispatch(signUp(data));
- // setErrorMsg(errorMessage);
   console.log(errorMsg);
  
     }

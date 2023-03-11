@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import AddMedModal from "./AddMedModal/AddMedModal";
 import "./DisplayCardsMed.css";
  import "./Search.css";

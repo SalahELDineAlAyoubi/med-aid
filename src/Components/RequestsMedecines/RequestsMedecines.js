@@ -24,7 +24,7 @@ const RequestsMedecines = () => {
             style={{ marginTop: "10px" }}
             key={req._id}
           >
-            {console.log(req)}
+           
             <RequestPost item={req} loading={loading} />
           </div>
         ))}

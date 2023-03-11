@@ -52,8 +52,7 @@ function App() {
           <Route path="alert" element={<Acceptaion />} />
         </Route>
         <Route path="*" element={<Navigate to="../" />} />
-        {/* <Route path="/search" element={<Search />} /> */}
-        {/* <Route path="/searchedItems" element={<SearchedItems />} /> */}
+     
       </Routes>
     </div>
   );

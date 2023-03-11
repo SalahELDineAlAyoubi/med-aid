@@ -20,7 +20,7 @@ let navigate=useNavigate()
 
     await deletePost(item._id, users._id);
      setModalOpened(false);
-     navigate("/displayMed")
+    window.location.reload()
    };
 
   return (

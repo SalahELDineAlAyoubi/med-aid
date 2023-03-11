@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./DrugsProfile.css";
   import {    useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../Redux1/actions/postAction";
-//import axios from 'axios';
 
 const DrugsProfile = ({ id }) => {
      const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;

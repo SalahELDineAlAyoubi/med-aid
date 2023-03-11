@@ -12,7 +12,7 @@ const AcceptingRequest = () => {
   useEffect(() => {
  
      dispatch(getBookedPost(user._id));
-     console.log(myRequests);
+    // console.log(myRequests);
   }, []);
 
   return (
@@ -38,7 +38,7 @@ const AcceptingRequest = () => {
 
       {!getting &&
         myRequests &&
-        myRequests.map((item) => <AccepRejectCart item={item} />)}
+        myRequests.map((item) => <AccepRejectCart key={item._id} item={item} />)}
       {!getting && myRequests.length === 0 && (
         <div className="noRequest">No requests !</div>
       )}

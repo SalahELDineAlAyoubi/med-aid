@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Card , Placeholder } from 'react-bootstrap';
 import   "./RequestPost.css"
 import { format } from "timeago.js";
 import { findChat } from '../../Redux1/api/ChatRequest';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Navbar from '../Notifications';
 
 const RequestPost = ({ item, loading }) => {
   const { user } = useSelector((state) => state.authReducer.authData) || {};

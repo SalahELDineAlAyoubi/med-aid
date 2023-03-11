@@ -4,7 +4,7 @@ export const getRequests = () => async (dispatch) => {
   dispatch({ type: "RETREIVING_REQUEST_START" });
   try {
     const { data } = await RequestsApi.getRequests();
-    console.log("Action ko receive hoa hy ye : ", data);
+   // console.log("Action ko receive hoa hy ye : ", data);
 
     dispatch({ type: "RETREIVING_REQUEST_SUCCESS", data: data });
   } catch (error) {
@@ -18,7 +18,7 @@ export const getBookedPost = (userId) => async (dispatch) => {
   dispatch({ type: "RETREIVING_ALL_START" });
   try {
     const { data } = await RequestsApi.getBookedPost(userId);
-    console.log("Action ko receive hoa hy ye : ", data);
+    //console.log("Action ko receive hoa hy ye : ", data);
 
     dispatch({ type: "RETREIVING_ALL_SUCCESS", data: data });
   } catch (error) {

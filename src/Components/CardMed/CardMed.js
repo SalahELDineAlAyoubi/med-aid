@@ -1,36 +1,30 @@
 import React from 'react'
-  import { FaRegBookmark, FaInfoCircle } from "react-icons/fa";
+  import {  FaInfoCircle } from "react-icons/fa";
 import DisplayModel from "../Display Model/DisplayModel";
 import { format } from "timeago.js";
 import { useState } from "react";
 import { useEffect } from 'react';
-// import { findChat } from '../../Redux1/api/ChatRequest';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getUser } from '../../Redux1/actions/UserActions';
 import { bookMed, getPost, unbookMed } from '../../Redux1/api/PostsRequests';
 import { useNavigate } from 'react-router-dom';
 import UnBookModel from '../UnBookModel/UnBookModel';
-import { getUser } from '../../Redux1/api/UserRequest';
   import taslim from "../../Images/taslim.png"
 const CardMed = ({ item, usero, loading }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [modalUnbookOpened, setModalUnbookOpened] = useState(false);
   const [available, setAvailable] = useState(true);
   const [data, setData] = useState(item);
- // const [userData, setUserData] = useState({});
-  const [userBook, setUserBook] = useState({});
-    const {user} = useSelector((state) => state.authReducer.authData)||{} ;
+     const {user} = useSelector((state) => state.authReducer.authData)||{} ;
     
-  //const [postData, setPostData] = useState(item); 
 let navigate=useNavigate()  
 const dispatch = useDispatch();
 
- // const dispatch = useDispatch();
+
  useEffect(() => {
    if (data.taken === 1||data.taken === 2)  setAvailable(false);
     
 
-   //setData(item);
+
  }, [data]); 
   
 
@@ -46,10 +40,7 @@ const dispatch = useDispatch();
   
   const handleOpenDescription = async () => {
      
-      // const userBooked = await getUser(item.userIdBook);
 
- //      setUserBook(userBooked.data);
-  
    
    setModalOpened(true);
   };
@@ -57,19 +48,11 @@ const dispatch = useDispatch();
   
  
   const toggleAvailability = async () => {
-    // setAvailable(
-    //   medData.map((item) => {
-    //     if (item.id === id) {
-    //       return { ...item, available: !item.available };
-    //     }
-    //     return item;
-    //   })
-    // );
- ;
+  
+
 
     if (data.taken === 0) {
       if (user && (user._id!==data.userId)) {
-        //console.log(postData._id);
         console.log(user._id);
         console.log(data); 
           await bookMed(data._id, user._id);
@@ -79,17 +62,6 @@ const dispatch = useDispatch();
       }
     } 
   };
-  /* useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const { data } = await getUser(item.userId);
-        setUserData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (item !== null) getUserData();
-  }, [item]); */
  
 
   return (
@@ -129,7 +101,7 @@ const dispatch = useDispatch();
             </div>
           )}
         </div>
-        {/* <FaRegBookmark className={"medCard__wishlist"} /> */}
+       
 
         <div>
           <FaInfoCircle
@@ -144,7 +116,6 @@ const dispatch = useDispatch();
             available={available}
             toggleAvailability={toggleAvailability}
             setModalUnbookOpened={setModalUnbookOpened}
-            // userBook={userBook}
           />
         </div>
         {data.taken !== 2 && user && available && (

@@ -2,7 +2,7 @@ import { Modal, useMantineTheme } from "@mantine/core";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { uploadPost, uploadImage, uploadRequest } from "../../Redux1/actions/uploadAction";
+import { uploadImage, uploadRequest } from "../../Redux1/actions/uploadAction";
 import "../AddMedModal/AddMedModal.css";
 function RequestMedModal({ modalOpened, setModalOpened }) {
   const theme = useMantineTheme();

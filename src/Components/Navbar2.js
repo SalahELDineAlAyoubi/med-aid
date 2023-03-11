@@ -13,61 +13,26 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { styled, alpha } from "@mui/material/styles";
 import logo from "../Images/logo-nav.png";
 import "./Navbar2.css";
 import { useLocalStorage } from "react-use-storage";
 import Comment from "../Images/comment.png";
 import noti from "../Images/noti1.png";
 
-import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
  import { logout } from "../Redux1/actions/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import * as UserApi from "../Redux1/api/UserRequest";
-import { Navbar } from "react-bootstrap";
 
-const pages = ["Home", "Medecines", "About", "Contact"];
-const settings = ["Profile", "Log in"];
 
 function Navbar2() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  //  const [islogin, setIslogin] = React.useState(true);
   const [islogin, setislogin, removeislogin] = useLocalStorage("islogin");
-  //const [username, setusername, removeusername] = useLocalStorage("username" );
    const   {user}   = useSelector((state) => state.authReducer.authData)||{};
  
-  //const [user1, setUser1, removeUser1] = useLocalStorage("user1" );
+  
 
-  //  const [username, setUsername] = React.useState("");
-  //const [use, setUse] = React.useState(true);
-  const [user1, setUser1] = React.useState({});
-  const params = useParams();
-  const profileUserId = params.id;
-  let navigate = useNavigate();
-  const [profileUser, setProfileUser] = React.useState({});
-  //const [islogin, setIsslogin] = React.useLocalStorage('islogin');
-  // const [user1, setUser] = React.useLocalStorage('usser');
-  /* useEffect(() => {
-   const fetchProfileUser = async () => {
-      setProfileUser(user);
-   };
-   fetchProfileUser();
- }, [user]); */
-  //const { user } = useSelector((state) => state.authReducer.authData);
-  // const [user2, setUser2] = React.useState({});
- // const storedProfile = JSON.parse(localStorage.getItem("profile"));
-
-  /*useEffect(() => {
-      const fetchProfileUser = async () => {
-        //setUser2(storedProfile.user);
-        console.log(storedProfile.user);   
-      };
-      fetchProfileUser();
-    }, []);*/
+ 
   const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {

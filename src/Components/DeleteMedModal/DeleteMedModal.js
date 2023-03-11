@@ -2,8 +2,6 @@
   import { Modal, useMantineTheme } from "@mantine/core";
 import {   useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
- import {   updatePost } from "../../Redux1/actions/postAction";
-   import { uploadPost, uploadImage } from "../../Redux1/actions/uploadAction";
 import { deletePost } from "../../Redux1/api/PostsRequests";
    
   function DeleteMedModal({ modalOpened, setModalOpened, data, handleDeleteConfirm }) {
